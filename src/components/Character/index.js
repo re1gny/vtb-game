@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './index.module.scss';
 
-export function CharacterBlock(props) {
+export function Character(props) {
   const { name, skillsAmount, active, onMove, onSkillsAmountChange, onActivate } = props;
   const [moveAmount, setMoveAmount] = useState(0);
 

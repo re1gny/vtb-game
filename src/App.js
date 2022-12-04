@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Board } from './components/Board';
-import { CharacterBlock } from './components/CharacterBlock';
+import { Character } from './components/Character';
 import { CardGenerator } from './components/CardGenerator';
 import { Timer } from './components/Timer';
 import { initBoard } from './utils/initBoard';
@@ -58,7 +58,7 @@ function App() {
     <div>
       <div className={styles.characters}>
         {characters.map((character) => (
-          <CharacterBlock
+          <Character
             key={character.id}
             {...character}
             onMove={(steps) => handleCharacterMove(character, steps)}

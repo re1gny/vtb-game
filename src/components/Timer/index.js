@@ -7,11 +7,20 @@ export function Timer(props) {
   const [isTicking, setIsTicking] = useState(false);
   const [timeLeft, setTimeLeft] = useState(time);
 
+  function startTimer(timeLeft) {
+    timerRef.current = setTimeout(() => handleTick(timeLeft), 1000);
+  }
+
+  function stopTimer() {
+    clearTimeout(timerRef.current);
+    timerRef.current = null;
+  }
+
   function handleTick(currentTimeLeft) {
     if (currentTimeLeft > 1) {
       const newTimeLeft = currentTimeLeft - 1;
       setTimeLeft(newTimeLeft);
-      timerRef.current = setTimeout(() => handleTick(newTimeLeft), 1000);
+      startTimer(newTimeLeft);
     } else {
       handleFinish();
     }
@@ -19,12 +28,11 @@ export function Timer(props) {
 
   function handleStart() {
     setIsTicking(true);
-    timerRef.current = setTimeout(() => handleTick(timeLeft), 1000);
+    startTimer(timeLeft);
   }
 
   function handleFinish() {
-    clearTimeout(timerRef.current);
-    timerRef.current = null;
+    stopTimer();
     setTimeLeft(time);
     setIsTicking(false);
   }
