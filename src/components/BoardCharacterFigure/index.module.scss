@@ -1,0 +1,11 @@
+.wrapper {
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  box-sizing: border-box;
+  border-radius: 50%;
+  transition: top 0.3s, left 0.3s;
+}
