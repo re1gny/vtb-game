@@ -33,7 +33,7 @@ function App() {
   function handleActivateCharacter(character) {
     setCharacters((prev) =>
       prev.map((current) =>
-        current.id === character.id ? { ...current, active: true, field: board.fields[0] } : current
+        current.id === character.id ? { ...current, active: true, field: board.fields[0].id } : current
       )
     );
   }
@@ -48,7 +48,7 @@ function App() {
     setCharacters((prev) =>
       prev.map((current) =>
         current.id === character.id
-          ? { ...current, field: getFieldBySteps(board.fields, current.field, steps) }
+          ? { ...current, field: getFieldBySteps(board.fields, current.field, steps).id }
           : current
       )
     );
