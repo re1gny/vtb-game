@@ -4,8 +4,7 @@ import { Character } from './components/Character';
 import { CHARACTERS } from './constants/characters';
 import { getBoardByDepartment } from './utils/getBoardByDepartment';
 import { getInitialCharactersState } from './utils/getInitialCharactersState';
-import { getFieldIndexByFieldId } from './utils/getFieldIndexByFieldId';
-import { getFieldIdByPosition } from './utils/getFieldIdByPosition';
+import { getNextFieldIdByFieldId } from './utils/getNextFieldIdByFieldId';
 import styles from './App.module.scss';
 
 function App() {
@@ -22,11 +21,14 @@ function App() {
   }
 
   function handleCharacterMove(characterId, steps) {
-    const characterFieldId = charactersState[characterId].fieldId;
-    const fieldIndex = getFieldIndexByFieldId(characterFieldId, board);
-    const newFieldId = getFieldIdByPosition(board.path[fieldIndex + steps], board);
-
-    setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], fieldId: newFieldId } }));
+    for (let i = 0; i < steps; i++) {
+      setTimeout(() => {
+        setCharactersState((prev) => {
+          const fieldId = getNextFieldIdByFieldId(prev[characterId].fieldId, board);
+          return { ...prev, [characterId]: { ...prev[characterId], fieldId } };
+        });
+      }, i * 100);
+    }
   }
 
   return (
