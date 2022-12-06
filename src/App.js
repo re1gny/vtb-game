@@ -1,57 +1,49 @@
 import React, { useState } from 'react';
 import { Board } from './components/Board';
 import { Character } from './components/Character';
-import { CardGenerator } from './components/CardGenerator';
-import { Timer } from './components/Timer';
-import { initBoard } from './utils/initBoard';
-import { initCharacters } from './utils/initCharacters';
-import { BOARD } from './constants/boards';
 import { CHARACTERS } from './constants/characters';
-import { getFieldBySteps } from './utils/getFieldBySteps';
+import { getBoardByDepartment } from './utils/getBoardByDepartment';
+import { getInitialCharactersState } from './utils/getInitialCharactersState';
+import { getFieldIndexByFieldId } from './utils/getFieldIndexByFieldId';
+import { getFieldIdByPosition } from './utils/getFieldIdByPosition';
 import styles from './App.module.scss';
 
 function App() {
-  const [board] = useState(initBoard(BOARD));
-  const [characters, setCharacters] = useState(initCharacters(CHARACTERS));
+  const [department, setDepartment] = useState('RETAIL_DEPARTMENT');
+  const board = getBoardByDepartment(department);
+  const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
 
-  function handleActivateCharacter(character) {
-    setCharacters((prev) =>
-      prev.map((current) =>
-        current.id === character.id ? { ...current, active: true, field: board.fields[0].id } : current
-      )
-    );
+  function handleActivateCharacter(characterId) {
+    setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], active: true } }));
   }
 
-  function handleSkillsAmountChange(character, amount) {
-    setCharacters((prev) =>
-      prev.map((current) => (current.id === character.id ? { ...current, skillsAmount: amount } : current))
-    );
+  function handleSkillsAmountChange(characterId, skillsAmount) {
+    setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], skillsAmount } }));
   }
 
-  function handleCharacterMove(character, steps) {
-    setCharacters((prev) =>
-      prev.map((current) =>
-        current.id === character.id
-          ? { ...current, field: getFieldBySteps(board.fields, current.field, steps).id }
-          : current
-      )
-    );
+  function handleCharacterMove(characterId, steps) {
+    const characterFieldId = charactersState[characterId].fieldId;
+    const fieldIndex = getFieldIndexByFieldId(characterFieldId, board);
+    const newFieldId = getFieldIdByPosition(board.path[fieldIndex + steps], board);
+
+    setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], fieldId: newFieldId } }));
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div className={styles.characters}>
-        {characters.map((character) => (
+        {CHARACTERS.map((character) => (
           <Character
             key={character.id}
             {...character}
-            onMove={(steps) => handleCharacterMove(character, steps)}
-            onSkillsAmountChange={(amount) => handleSkillsAmountChange(character, amount)}
-            onActivate={() => handleActivateCharacter(character)}
+            {...charactersState[character.id]}
+            onMove={(steps) => handleCharacterMove(character.id, steps)}
+            onSkillsAmountChange={(amount) => handleSkillsAmountChange(character.id, amount)}
+            onActivate={() => handleActivateCharacter(character.id)}
           />
         ))}
       </div>
-      <Board board={board} characters={characters} />
+      <Board className={styles.board} board={board} characters={CHARACTERS} charactersState={charactersState} />
     </div>
   );
 }

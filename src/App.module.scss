@@ -1,5 +1,15 @@
-.characters,
-.timers,
-.cardGenerators {
+.wrapper {
   display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.characters {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.board {
+  flex-grow: 1;
+  margin-top: 30px;
 }
