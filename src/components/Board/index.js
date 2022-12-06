@@ -12,17 +12,14 @@ export function Board(props) {
 
   return (
     <div className={styles.wrapper} style={style}>
-      {fields.map(({ id, left, top, size }) => (
-        <BoardField key={id} top={top} left={left} size={size} />
+      {fields.map((field) => (
+        <BoardField key={field.id} field={field} />
       ))}
       {characters
         .filter(({ active }) => active)
-        .map(({ id, field }) => {
-          const currentField = fields.find(({ id }) => field === id);
-          const top = currentField.top + currentField.slots[id].top;
-          const left = currentField.left + currentField.slots[id].left;
-          return currentField && <BoardCharacterFigure key={id} top={top} left={left} />;
-        })}
+        .map((character) => (
+          <BoardCharacterFigure key={character.id} fields={fields} character={character} />
+        ))}
     </div>
   );
 }

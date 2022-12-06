@@ -14,22 +14,6 @@ function App() {
   const [board] = useState(initBoard(BOARD));
   const [characters, setCharacters] = useState(initCharacters(CHARACTERS));
 
-  const timers = [15, 30, 60];
-  const cardGenerators = [
-    {
-      title: 'Генератор карточек заданий',
-      cards: [],
-    },
-    {
-      title: 'Генератор карточек шанс',
-      cards: [],
-    },
-    {
-      title: 'Генератор карточек навыки',
-      cards: [],
-    },
-  ];
-
   function handleActivateCharacter(character) {
     setCharacters((prev) =>
       prev.map((current) =>
@@ -65,16 +49,6 @@ function App() {
             onSkillsAmountChange={(amount) => handleSkillsAmountChange(character, amount)}
             onActivate={() => handleActivateCharacter(character)}
           />
-        ))}
-      </div>
-      <div className={styles.timers}>
-        {timers.map((time) => (
-          <Timer key={time} time={time} />
-        ))}
-      </div>
-      <div className={styles.cardGenerators}>
-        {cardGenerators.map(({ title, cards }) => (
-          <CardGenerator key={title} title={title} cards={cards} />
         ))}
       </div>
       <Board board={board} characters={characters} />
