@@ -1,3 +1,55 @@
 .wrapper {
-  border: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 16px;
+  background: #002882;
+  border-radius: 20px;
+}
+
+.name {
+  padding: 8px 15px;
+  background: #00ABFF;
+  border-radius: 20px;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.main {
+  display: flex;
+  margin-top: 14px;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+.superpower {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 36px;
+}
+
+.superpowerTitle {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FFFFFF;
+}
+
+.superpowerValue {
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  color: #FFFFFF;
 }

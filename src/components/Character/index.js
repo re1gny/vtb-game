@@ -1,30 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import cn from 'classnames';
 import styles from './index.module.scss';
 
 export function Character(props) {
-  const { name, skillsAmount, active, onMove, onSkillsAmountChange, onActivate } = props;
-  const [moveAmount, setMoveAmount] = useState(0);
-
-  function handleMove() {
-    onMove?.(moveAmount);
-    setMoveAmount(0);
-  }
+  const { className, name, superpower, active, onActivate } = props;
 
   return (
-    <div className={styles.wrapper}>
-      <h3>{name}</h3>
-      {active ? (
-        <>
-          <label>
-            Количество навыков:
-            <input type="number" value={skillsAmount} onChange={(event) => onSkillsAmountChange(+event.target.value)} />
-          </label>
-          <input type="number" value={moveAmount} onChange={(event) => setMoveAmount(+event.target.value)} />
-          <button onClick={handleMove}>Перейти</button>
-        </>
-      ) : (
-        <button onClick={onActivate}>Выбрать</button>
-      )}
+    <div className={cn(styles.wrapper, className)} onClick={onActivate}>
+      <div className={styles.name}>{name}</div>
+      <div className={styles.main}>
+        <div className={styles.avatar} />
+        <div className={styles.superpower}>
+          <div className={styles.superpowerTitle}>Суперсила</div>
+          <div className={styles.superpowerValue}>{superpower}</div>
+        </div>
+      </div>
     </div>
   );
 }
