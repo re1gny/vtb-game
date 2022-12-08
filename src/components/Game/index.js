@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Board } from '../Board';
-import { Character } from '../Character';
 import { CHARACTERS } from '../../constants/characters';
 import { getBoardByDepartment } from '../../utils/getBoardByDepartment';
 import { getInitialCharactersState } from '../../utils/getInitialCharactersState';
 import { getNextFieldIdByFieldId } from '../../utils/getNextFieldIdByFieldId';
-import styles from './index.module.scss';
 import { Characters } from '../Characters';
+import { Actions } from '../Actions';
 import { DEPARTMENT_TITLE } from '../../constants/departments';
+import styles from './index.module.scss';
 
 export function Game(props) {
   const { department } = props;
@@ -49,7 +49,7 @@ export function Game(props) {
         </div>
         <Board className={styles.board} board={board} characters={CHARACTERS} charactersState={charactersState} />
       </div>
-      <div className={styles.actions}></div>
+      <Actions className={styles.actions} />
     </div>
   );
 }

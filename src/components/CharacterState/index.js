@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import cn from 'classnames';
 import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
 import styles from './index.module.scss';
 
+const ON_MOVE_DELAY = 1500;
+
 export function CharacterState(props) {
   const { className, skillsAmount, active, onActivate, onSkillsAmountChange, onMove } = props;
-  const [steps, setSteps] = useState('');
+  const [steps, setSteps] = useState(0);
 
-  function handleStepsChange(event) {
-    const value = event.target.value;
-    if (isNaN(+value)) {
-      return;
-    }
-    setSteps(value);
-    onMove?.(+value);
-    setTimeout(() => setSteps(''), 500);
+  const onMoveTimerRef = useRef(null);
+
+  function handleStepsAmountChange() {
+    clearTimeout(onMoveTimerRef.current);
+    onMoveTimerRef.current = null;
+
+    const newSteps = steps + 1;
+    setSteps(newSteps);
+
+    onMoveTimerRef.current = setTimeout(() => {
+      onMove?.(newSteps);
+      setSteps(0);
+    }, ON_MOVE_DELAY);
   }
 
   function handleSkillsAmountChange() {
@@ -24,8 +31,11 @@ export function CharacterState(props) {
   return (
     <div className={cn(styles.wrapper, className)} onClick={onActivate}>
       <div className={styles.steps}>
-        <span className={styles.stepsTitle}>Шаги в этот ход +</span>
-        <input className={styles.stepsInput} type="text" maxLength={1} value={steps} onChange={handleStepsChange} />
+        <span className={styles.stepsTitle}>Шаги в этот ход</span>
+        <div className={styles.stepsInput}>
+          <span className={styles.stepsValue}>{steps || 'Х'}</span>
+          <PlusIcon className={styles.stepsIncrementButton} onClick={handleStepsAmountChange} />
+        </div>
       </div>
       <div className={styles.skills}>
         <span className={styles.skillsTitle}>Количество навыков</span>

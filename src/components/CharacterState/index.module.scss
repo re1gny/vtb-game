@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding: 25px 27px 25px 16px;
+  padding: 35px 36px 13px 14px;
   background: #002882;
   border-radius: 20px;
 }
@@ -13,13 +13,13 @@
 }
 
 .skills {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .stepsTitle,
 .skillsTitle {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 11px;
   color: #ffffff;
 }
@@ -27,6 +27,10 @@
 .stepsInput,
 .skillsInput {
   flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-left: 12px;
   width: 42px;
   height: 42px;
@@ -34,34 +38,22 @@
   border-radius: 8px;
 }
 
-.stepsInput {
-  outline: none;
-  border: none;
-  padding: 0;
-  text-align: center;
-}
-
-.skillsInput {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.stepsInput,
+.stepsValue,
 .skillsValue {
   font-weight: 600;
   font-size: 25px;
   line-height: 11px;
   color: #002882;
+  text-align: center;
 }
 
+.stepsIncrementButton,
 .skillsIncrementButton {
   position: absolute;
-  width: 22px;
-  height: 22px;
-  top: 6px;
-  right: 6px;
+  width: 34px;
+  height: 34px;
+  top: 8px;
+  right: 8px;
   transform: translate(100%, -100%);
   cursor: pointer;
 }
