@@ -23,6 +23,10 @@ export function Game(props) {
   }
 
   function handleCharacterMove(characterId, steps) {
+    if (!charactersState[characterId]?.active) {
+      return;
+    }
+
     for (let i = 0; i < steps; i++) {
       setTimeout(() => {
         setCharactersState((prev) => {

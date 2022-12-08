@@ -29,7 +29,7 @@ export function CharacterState(props) {
   }
 
   return (
-    <div className={cn(styles.wrapper, className)} onClick={onActivate}>
+    <div className={cn(styles.wrapper, className)}>
       <div className={styles.steps}>
         <span className={styles.stepsTitle}>Шаги в этот ход</span>
         <div className={styles.stepsInput}>
