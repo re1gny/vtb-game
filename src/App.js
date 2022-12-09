@@ -8,7 +8,7 @@ function App() {
 
   return (
     <Layout className={styles.wrapper}>
-      <Game department={department} />
+      <Game department={department} onChangeDepartment={setDepartment} />
     </Layout>
   );
 }

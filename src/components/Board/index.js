@@ -110,6 +110,18 @@ export function Board(props) {
             field && (
               <BoardField
                 key={field.id}
+                field={{ type: 'overlay' }}
+                style={getFieldStyles(fieldSize, [yIndex, xIndex], horizontalOffset)}
+              />
+            )
+        )
+      )}
+      {board.layout.map((fields, yIndex) =>
+        fields.map(
+          (field, xIndex) =>
+            field && (
+              <BoardField
+                key={field.id}
                 field={field}
                 style={getFieldStyles(fieldSize, [yIndex, xIndex], horizontalOffset)}
               />

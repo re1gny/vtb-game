@@ -10,7 +10,7 @@ import { DEPARTMENT_TITLE } from '../../constants/departments';
 import styles from './index.module.scss';
 
 export function Game(props) {
-  const { department } = props;
+  const { department, onChangeDepartment } = props;
   const board = getBoardByDepartment(department);
   const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
 
@@ -37,6 +37,10 @@ export function Game(props) {
     }
   }
 
+  function handleToggleDepartment() {
+    onChangeDepartment?.(department === 'CONTACT_CENTER' ? 'RETAIL_DEPARTMENT' : 'CONTACT_CENTER');
+  }
+
   return (
     <div className={styles.wrapper}>
       <Characters
@@ -49,7 +53,9 @@ export function Game(props) {
       />
       <div className={styles.main}>
         <div className={styles.titleWrapper}>
-          <div className={styles.title}>{DEPARTMENT_TITLE[department]}</div>
+          <div className={styles.title} onClick={handleToggleDepartment}>
+            {DEPARTMENT_TITLE[department]}
+          </div>
         </div>
         <Board className={styles.board} board={board} characters={CHARACTERS} charactersState={charactersState} />
       </div>
