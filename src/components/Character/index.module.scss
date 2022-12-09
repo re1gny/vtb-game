@@ -5,13 +5,20 @@
   padding: 16px 14px;
   background: #002882;
   border-radius: 20px;
+  transition: all 0.2s;
+
+  &:not(.active) {
+    opacity: 0.5;
+    filter: blur(5px);
+    cursor: pointer;
+  }
 }
 
 .name {
   padding: 8px 15px;
-  background: #00ABFF;
+  background: #00abff;
   border-radius: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   font-weight: 600;
   font-size: 14px;
@@ -27,7 +34,7 @@
   flex-shrink: 0;
   width: 80px;
   height: 80px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 8px;
   transform: matrix(1, 0, 0, -1, 0, 0);
 }
@@ -37,13 +44,21 @@
   display: flex;
   flex-direction: column;
   margin-left: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:not(.available) {
+    opacity: 0.5;
+    filter: blur(2px);
+    cursor: default;
+  }
 }
 
 .superpowerTitle {
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .superpowerValue {
@@ -51,5 +66,5 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 15px;
-  color: #FFFFFF;
+  color: #ffffff;
 }

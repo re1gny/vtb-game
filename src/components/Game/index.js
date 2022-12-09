@@ -18,6 +18,10 @@ export function Game(props) {
     setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], active: true } }));
   }
 
+  function handleUseCharacterSuperpower(characterId) {
+    setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], superpowerAvailable: false } }));
+  }
+
   function handleSkillsAmountChange(characterId, skillsAmount) {
     setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], skillsAmount } }));
   }
@@ -48,6 +52,7 @@ export function Game(props) {
         characters={CHARACTERS}
         charactersState={charactersState}
         onActivate={handleActivateCharacter}
+        onUseSuperpower={handleUseCharacterSuperpower}
         onSkillsAmountChange={handleSkillsAmountChange}
         onMove={handleCharacterMove}
       />

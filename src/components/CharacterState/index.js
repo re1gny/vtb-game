@@ -12,6 +12,10 @@ export function CharacterState(props) {
   const onMoveTimerRef = useRef(null);
 
   function handleStepsAmountChange() {
+    if (!active) {
+      return;
+    }
+
     clearTimeout(onMoveTimerRef.current);
     onMoveTimerRef.current = null;
 
@@ -25,11 +29,19 @@ export function CharacterState(props) {
   }
 
   function handleSkillsAmountChange() {
-    onSkillsAmountChange?.(skillsAmount + 1);
+    if (active) {
+      onSkillsAmountChange?.(skillsAmount + 1);
+    }
+  }
+
+  function handleActivate() {
+    if (!active) {
+      onActivate?.();
+    }
   }
 
   return (
-    <div className={cn(styles.wrapper, className)}>
+    <div className={cn(styles.wrapper, active && styles.active, className)} onClick={handleActivate}>
       <div className={styles.steps}>
         <span className={styles.stepsTitle}>Шаги в этот ход</span>
         <div className={styles.stepsInput}>

@@ -4,7 +4,10 @@ import { getInitialFieldPosition } from './getInitialFieldPosition';
 export function getInitialCharactersState(characters, board) {
   const initialFieldId = getFieldIdByPosition(getInitialFieldPosition(board), board);
   return characters.reduce(
-    (acc, current) => ({ ...acc, [current.id]: { active: false, skillsAmount: 0, fieldId: initialFieldId } }),
+    (acc, current) => ({
+      ...acc,
+      [current.id]: { active: false, skillsAmount: 0, superpowerAvailable: true, fieldId: initialFieldId },
+    }),
     {}
   );
 }

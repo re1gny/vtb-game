@@ -5,7 +5,7 @@ import { CharacterState } from '../CharacterState';
 import styles from './index.module.scss';
 
 export function Characters(props) {
-  const { className, characters, charactersState, onActivate, onSkillsAmountChange, onMove } = props;
+  const { className, characters, charactersState, onActivate, onSkillsAmountChange, onMove, onUseSuperpower } = props;
 
   return (
     <div className={cn(styles.wrapper, className)}>
@@ -15,6 +15,7 @@ export function Characters(props) {
             {...character}
             {...charactersState?.[character?.id]}
             onActivate={() => onActivate?.(character?.id)}
+            onUseSuperpower={() => onUseSuperpower?.(character?.id)}
           />
           <CharacterState
             {...character}

@@ -4,6 +4,13 @@
   padding: 35px 36px 13px 14px;
   background: #002882;
   border-radius: 20px;
+  transition: all 0.2s;
+
+  &:not(.active) {
+    opacity: 0.5;
+    filter: blur(5px);
+    cursor: pointer;
+  }
 }
 
 .steps,
