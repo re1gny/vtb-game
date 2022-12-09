@@ -1,3 +1,3 @@
 export function getInitialFieldPosition(board) {
-  return board?.path?.[1];
+  return board?.path?.[0];
 }
