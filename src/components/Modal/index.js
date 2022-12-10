@@ -3,15 +3,23 @@ import cn from 'classnames';
 import styles from './index.module.scss';
 
 export function Modal(props) {
-  const { className, opened, children, onClose } = props;
+  const { className, backdropRef, contentRef, opened, children, onClose, onClick } = props;
+
+  function handleModalClick(event) {
+    const shouldKeep = onClick?.(event);
+
+    if (shouldKeep !== false) {
+      event?.stopPropagation();
+    }
+  }
 
   if (!opened) {
     return null;
   }
 
   return (
-    <div className={styles.wrapper} onClick={onClose}>
-      <div className={cn(styles.content, className)} onClick={(event) => event.stopPropagation()}>
+    <div ref={backdropRef} className={styles.wrapper} onClick={onClose}>
+      <div ref={contentRef} className={cn(styles.content, className)} onClick={handleModalClick}>
         {children}
       </div>
     </div>
