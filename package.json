@@ -2,6 +2,7 @@
   "name": "vtb-game",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "devDependencies": {
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
