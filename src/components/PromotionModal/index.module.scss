@@ -1,5 +1,4 @@
 .wrapper {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,14 +6,6 @@
   background: #002882;
   border-radius: 30px;
   width: 1000px;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .text {
@@ -31,6 +22,7 @@
   position: absolute;
   right: -130px;
   top: 30px;
+  z-index: -1;
 }
 
 .mediumStar {
@@ -39,6 +31,7 @@
   height: 365px;
   right: -144px;
   top: 198px;
+  z-index: -1;
 }
 
 .superStar {
@@ -47,4 +40,5 @@
   height: 499px;
   top: -88px;
   left: -176px;
+  z-index: -1;
 }

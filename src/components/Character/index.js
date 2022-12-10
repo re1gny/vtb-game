@@ -11,6 +11,7 @@ export function Character(props) {
   function handleActivate() {
     if (!active && !gameCompleted) {
       onActivate?.();
+      onOpen?.();
     }
   }
 
@@ -28,15 +29,26 @@ export function Character(props) {
 
   return (
     <div
-      className={cn(styles.wrapper, active && styles.active, gameCompleted && styles.gameCompleted, className)}
+      className={cn(
+        styles.wrapper,
+        active && styles.active,
+        gameCompleted && styles.gameCompleted,
+        superpowerAvailable && styles.superpowerAvailable,
+        className
+      )}
       onClick={handleActivate}
     >
       <div className={styles.name} onClick={handleOpen}>
         {name}
       </div>
       <div className={styles.main}>
-        <CharacterAvatar className={styles.avatar} character={character} gameCompleted={gameCompleted} />
-        <div className={cn(styles.superpower, superpowerAvailable && styles.available)} onClick={handleUseSuperpower}>
+        <CharacterAvatar
+          className={styles.avatar}
+          character={character}
+          characterState={characterState}
+          gameCompleted={gameCompleted}
+        />
+        <div className={styles.superpower} onClick={handleUseSuperpower}>
           <div className={styles.superpowerTitle}>Суперсила</div>
           <div className={styles.superpowerValue}>{superpower}</div>
         </div>

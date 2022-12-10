@@ -9,7 +9,9 @@ import { Actions } from '../Actions';
 import { GameLayout } from '../GameLayout';
 import { CharacterModal } from '../CharacterModal';
 import { PromotionModal } from '../PromotionModal';
+import { WinnerCongratulationsModal } from '../WinnerCongratulationsModal';
 import { DEPARTMENT_TITLE } from '../../constants/departments';
+import { getWinners } from '../../utils/getWinners';
 import styles from './index.module.scss';
 
 export function Game(props) {
@@ -19,9 +21,11 @@ export function Game(props) {
   const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
   const [openedCharacter, setOpenedCharacter] = useState(null);
   const [currentPromotion, setCurrentPromotion] = useState(null);
+  const [winners, setWinners] = useState(null);
 
   function handleCompleteGame() {
     setGameCompleted(true);
+    setWinners(getWinners(CHARACTERS, charactersState, board));
   }
 
   function handleActivateCharacter(characterId) {
@@ -99,10 +103,12 @@ export function Game(props) {
       <CharacterModal
         opened={!!openedCharacter}
         character={openedCharacter}
+        characterState={charactersState[openedCharacter?.id]}
         gameCompleted={gameCompleted}
         onClose={() => setOpenedCharacter(null)}
       />
       <PromotionModal opened={!!currentPromotion} onClose={() => setCurrentPromotion(null)} />
+      <WinnerCongratulationsModal opened={!!winners?.length} winners={winners} onClose={() => setWinners(null)} />
     </GameLayout>
   );
 }

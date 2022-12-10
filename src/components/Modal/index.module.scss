@@ -8,6 +8,7 @@
   backdrop-filter: blur(4px);
   padding: 32px;
   box-sizing: border-box;
+  z-index: 1000;
   animation: backdropAppear 0.2s forwards;
 }
 
@@ -19,6 +20,7 @@
   max-width: calc(100% - 64px);
   max-height: calc(100% - 64px);
   box-sizing: border-box;
+  z-index: 1001;
   animation: contentAppear 0.2s forwards;
 }
 
