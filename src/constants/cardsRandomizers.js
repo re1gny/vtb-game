@@ -1,7 +1,7 @@
-import { ReactComponent as TaskLogoIcon } from '../assets/icons/taskLogo.svg'
-import { ReactComponent as SkillLogoIcon } from '../assets/icons/skillLogo.svg'
-import TaskBackgroundImage from '../assets/images/taskBackground.png'
-import SkillBackgroundImage from '../assets/images/skillBackground.png'
+import { ReactComponent as TaskLogoIcon } from '../assets/icons/taskCardRandomizerLogo.svg'
+import { ReactComponent as SkillLogoIcon } from '../assets/icons/skillCardRandomizerLogo.svg'
+import TaskBackgroundImage from '../assets/images/taskCardRandomizerBackground.png'
+import SkillBackgroundImage from '../assets/images/skillCardRandomizerBackground.png'
 
 export const TASK_RANDOMIZER = {
   title: 'Задание',

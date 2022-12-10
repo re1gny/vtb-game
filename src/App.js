@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Game } from './components/Game';
+import { GameSelector } from './components/GameSelector';
 
 function App() {
-  const [department, setDepartment] = useState('RETAIL_DEPARTMENT');
+  const [department, setDepartment] = useState(null);
 
-  return <Game department={department} onChangeDepartment={setDepartment} />;
+  return department ? <Game department={department} /> : <GameSelector onSelectDepartment={setDepartment} />;
 }
 
 export default App;

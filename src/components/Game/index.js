@@ -16,7 +16,7 @@ import { getFieldIndexByFieldId } from '../../utils/getFieldIndexByFieldId';
 import styles from './index.module.scss';
 
 export function Game(props) {
-  const { department, onChangeDepartment } = props;
+  const { department } = props;
   const board = getBoardByDepartment(department);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
@@ -84,10 +84,6 @@ export function Game(props) {
     }
   }
 
-  function handleToggleDepartment() {
-    onChangeDepartment?.(department === 'CONTACT_CENTER' ? 'RETAIL_DEPARTMENT' : 'CONTACT_CENTER');
-  }
-
   return (
     <GameLayout className={styles.wrapper}>
       <Characters
@@ -103,7 +99,7 @@ export function Game(props) {
       />
       <div className={styles.main}>
         <div className={styles.titleWrapper}>
-          <div className={styles.title} onClick={handleToggleDepartment}>
+          <div className={styles.title}>
             {DEPARTMENT_TITLE[department]}
           </div>
         </div>

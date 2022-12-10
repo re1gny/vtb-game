@@ -1,4 +1,4 @@
-import { ReactComponent as ChanceLogoIcon } from '../assets/icons/chanceLogo.svg';
+import { ReactComponent as ChanceLogoIcon } from '../assets/icons/chanceFieldLogo.svg';
 import { ReactComponent as ContactCenterPromotion1Icon } from '../assets/icons/contactCenterPromotion1.svg';
 import { ReactComponent as ContactCenterPromotion2Icon } from '../assets/icons/contactCenterPromotion2.svg';
 import { ReactComponent as ContactCenterPromotion3Icon } from '../assets/icons/contactCenterPromotion3.svg';
