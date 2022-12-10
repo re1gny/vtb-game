@@ -1,10 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
+import { CharacterAvatar } from '../CharacterAvatar';
 import styles from './index.module.scss';
 
 export function Character(props) {
   const { className, character, characterState, gameCompleted, onActivate, onUseSuperpower } = props;
-  const { name, superpower, avatar, qr, avatarBorder: AvatarBorder } = character;
+  const { name, superpower } = character;
   const { superpowerAvailable, active } = characterState;
 
   function handleActivate() {
@@ -26,12 +27,7 @@ export function Character(props) {
     >
       <div className={styles.name}>{name}</div>
       <div className={styles.main}>
-        <div
-          className={cn(styles.image, gameCompleted ? styles.qr : styles.avatar)}
-          style={{ backgroundImage: `url(${gameCompleted ? qr : avatar})` }}
-        >
-          {AvatarBorder && <AvatarBorder className={styles.imageBorder} />}
-        </div>
+        <CharacterAvatar className={styles.avatar} character={character} gameCompleted={gameCompleted} />
         <div className={cn(styles.superpower, superpowerAvailable && styles.available)} onClick={handleUseSuperpower}>
           <div className={styles.superpowerTitle}>Суперсила</div>
           <div className={styles.superpowerValue}>{superpower}</div>

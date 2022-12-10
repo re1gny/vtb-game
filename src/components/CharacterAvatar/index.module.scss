@@ -1,0 +1,38 @@
+.wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 10%;
+}
+
+.border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 134%;
+  height: 134%;
+  transform: translate(-50%, -50%);
+}
+
+.image {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+}
+
+.avatar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+}
+
+.qr {
+  top: 7.5%;
+  left: 7.5%;
+  width: 85%;
+  height: 85%;
+}

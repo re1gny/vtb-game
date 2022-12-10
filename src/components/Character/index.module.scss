@@ -38,33 +38,8 @@
   margin-top: 14px;
 }
 
-.imageBorder {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 134%;
-  height: 134%;
-  transform: translate(-50%, -50%);
-}
-
-.image {
-  flex-shrink: 0;
-  position: relative;
-  width: 80px;
-  height: 80px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  background-repeat: no-repeat;
-}
-
 .avatar {
-  background-position: left top;
-  background-size: cover;
-}
-
-.qr {
-  background-position: 6px 6px;
-  background-size: calc(100% - 12px) calc(100% - 12px);
+  flex-shrink: 0;
 }
 
 .superpower {
