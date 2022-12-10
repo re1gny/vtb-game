@@ -8,6 +8,7 @@ export function CharacterModal(props) {
 
   return (
     <Modal className={styles.wrapper} opened={opened} onClose={onClose}>
+      <div className={styles.avatarBackdrop} />
       <div className={styles.name}>{character?.name}</div>
       <CharacterAvatar className={styles.avatar} character={character} gameCompleted={gameCompleted} />
       <div className={styles.description}>{character?.description}</div>

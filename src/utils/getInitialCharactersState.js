@@ -1,8 +1,8 @@
-import { getFieldIdByPosition } from './getFieldIdByPosition';
+import { getFieldByPosition } from './getFieldByPosition';
 import { getInitialFieldPosition } from './getInitialFieldPosition';
 
 export function getInitialCharactersState(characters, board) {
-  const initialFieldId = getFieldIdByPosition(getInitialFieldPosition(board), board);
+  const initialFieldId = getFieldByPosition(getInitialFieldPosition(board), board)?.id;
   return characters.reduce(
     (acc, current) => ({
       ...acc,
