@@ -13,15 +13,25 @@ import { WinnerCongratulationsModal } from '../WinnerCongratulationsModal';
 import { DEPARTMENT_TITLE } from '../../constants/departments';
 import { getWinners } from '../../utils/getWinners';
 import { getFieldIndexByFieldId } from '../../utils/getFieldIndexByFieldId';
+import { ChanceCardModal } from '../ChanceCardModal';
+import { getRandomCard } from '../../utils/getRandomCard';
+import { CHANCE_CARDS, SKILL_CARDS, TASK_CARDS } from '../../constants/cards';
+import { SkillCardModal } from '../SkillCardModal';
 import styles from './index.module.scss';
 
 export function Game(props) {
   const { department } = props;
   const board = getBoardByDepartment(department);
+  const [leftChanceCards, setLeftChanceCard] = useState(CHANCE_CARDS);
+  const [leftSkillCards, setLeftSkillCard] = useState(SKILL_CARDS);
+  const [leftTaskCards, setLeftTaskCard] = useState(TASK_CARDS);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
   const [openedCharacter, setOpenedCharacter] = useState(null);
   const [currentPromotion, setCurrentPromotion] = useState(null);
+  const [chanceCard, setChanceCard] = useState(null);
+  const [skillCard, setSkillCard] = useState(null);
+  const [taskCard, setTaskCard] = useState(null);
   const [winners, setWinners] = useState(null);
 
   function handleCompleteGame(charactersState) {
@@ -41,6 +51,33 @@ export function Game(props) {
     setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], skillsAmount } }));
   }
 
+  function handleRandomizeSkill() {
+    const card = getRandomCard(leftSkillCards);
+
+    if (card) {
+      setLeftSkillCard((prev) => prev.filter(({ id }) => id !== card.id));
+      setSkillCard(card);
+    }
+  }
+
+  function handleRandomizeTask() {
+    const card = getRandomCard(leftTaskCards);
+
+    if (card) {
+      setLeftTaskCard((prev) => prev.filter(({ id }) => id !== card.id));
+      setTaskCard(card);
+    }
+  }
+
+  function handleRandomizeChance() {
+    const card = getRandomCard(leftChanceCards);
+
+    if (card) {
+      setLeftChanceCard((prev) => prev.filter(({ id }) => id !== card.id));
+      setChanceCard(card);
+    }
+  }
+
   function handleField(field, charactersState) {
     if (getFieldIndexByFieldId(field?.id, board) === board?.path?.length - 1) {
       handleCompleteGame(charactersState);
@@ -49,6 +86,10 @@ export function Game(props) {
 
     if (field?.type === 'promotion') {
       setCurrentPromotion(field);
+    }
+
+    if (field?.type === 'chance') {
+      handleRandomizeChance();
     }
   }
 
@@ -99,16 +140,17 @@ export function Game(props) {
       />
       <div className={styles.main}>
         <div className={styles.titleWrapper}>
-          <div className={styles.title}>
-            {DEPARTMENT_TITLE[department]}
-          </div>
+          <div className={styles.title}>{DEPARTMENT_TITLE[department]}</div>
         </div>
         <Board className={styles.board} board={board} characters={CHARACTERS} charactersState={charactersState} />
       </div>
       <Actions
         className={styles.actions}
         gameCompleted={gameCompleted}
+        chanceCards={leftChanceCards}
         onCompleteGame={() => handleCompleteGame(charactersState)}
+        onRandomizeSkill={handleRandomizeSkill}
+        onRandomizeTask={handleRandomizeTask}
       />
       <CharacterModal
         opened={!!openedCharacter}
@@ -119,6 +161,8 @@ export function Game(props) {
       />
       <PromotionModal opened={!!currentPromotion} onClose={() => setCurrentPromotion(null)} />
       <WinnerCongratulationsModal opened={!!winners?.length} winners={winners} onClose={() => setWinners(null)} />
+      <ChanceCardModal opened={!!chanceCard} card={chanceCard} onClose={() => setChanceCard(null)} />
+      <SkillCardModal opened={!!skillCard} card={skillCard} onClose={() => setSkillCard(null)} />
     </GameLayout>
   );
 }
