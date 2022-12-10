@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 
 export function Character(props) {
   const { className, character, characterState, gameCompleted, onActivate, onUseSuperpower } = props;
-  const { name, superpower, avatar, qr } = character;
+  const { name, superpower, avatar, qr, avatarBorder: AvatarBorder } = character;
   const { superpowerAvailable, active } = characterState;
 
   function handleActivate() {
@@ -26,12 +26,11 @@ export function Character(props) {
     >
       <div className={styles.name}>{name}</div>
       <div className={styles.main}>
-        <div className={styles.image}>
-          {gameCompleted ? (
-            <div className={styles.qr} style={{ backgroundImage: `url(${qr})` }} />
-          ) : (
-            <div className={styles.avatar} style={{ backgroundImage: `url(${avatar})` }} />
-          )}
+        <div
+          className={cn(styles.image, gameCompleted ? styles.qr : styles.avatar)}
+          style={{ backgroundImage: `url(${gameCompleted ? qr : avatar})` }}
+        >
+          {AvatarBorder && <AvatarBorder className={styles.imageBorder} />}
         </div>
         <div className={cn(styles.superpower, superpowerAvailable && styles.available)} onClick={handleUseSuperpower}>
           <div className={styles.superpowerTitle}>Суперсила</div>
