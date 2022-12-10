@@ -19,7 +19,8 @@
   background-position: left top;
   transition: all 0.2s;
 
-  &.gameCompleted {
+  &.gameCompleted,
+  &.hasNoCards {
     opacity: 0;
     pointer-events: none;
     cursor: default;

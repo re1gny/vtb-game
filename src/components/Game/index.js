@@ -17,6 +17,7 @@ import { ChanceCardModal } from '../ChanceCardModal';
 import { getRandomCard } from '../../utils/getRandomCard';
 import { CHANCE_CARDS, SKILL_CARDS, TASK_CARDS } from '../../constants/cards';
 import { SkillCardModal } from '../SkillCardModal';
+import { TaskCardModal } from '../TaskCardModal';
 import styles from './index.module.scss';
 
 export function Game(props) {
@@ -147,7 +148,8 @@ export function Game(props) {
       <Actions
         className={styles.actions}
         gameCompleted={gameCompleted}
-        chanceCards={leftChanceCards}
+        skillCards={leftSkillCards}
+        taskCards={leftTaskCards}
         onCompleteGame={() => handleCompleteGame(charactersState)}
         onRandomizeSkill={handleRandomizeSkill}
         onRandomizeTask={handleRandomizeTask}
@@ -163,6 +165,7 @@ export function Game(props) {
       <WinnerCongratulationsModal opened={!!winners?.length} winners={winners} onClose={() => setWinners(null)} />
       <ChanceCardModal opened={!!chanceCard} card={chanceCard} onClose={() => setChanceCard(null)} />
       <SkillCardModal opened={!!skillCard} card={skillCard} onClose={() => setSkillCard(null)} />
+      <TaskCardModal opened={!!taskCard} card={taskCard} onClose={() => setTaskCard(null)} />
     </GameLayout>
   );
 }
