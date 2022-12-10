@@ -1,9 +1,30 @@
 .wrapper {
-  background-color: green;
-  box-sizing: border-box;
+  position: relative;
   border-radius: 50%;
+  background-color: #ffffff;
 
   &.active {
     transition: top 0.3s, left 0.3s;
   }
+}
+
+.border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+}
+
+.avatar {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  width: 84%;
+  height: 84%;
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+  border-radius: 50%;
 }

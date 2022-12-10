@@ -16,6 +16,12 @@ import { ReactComponent as CharacterAvatarBorder3 } from '../assets/icons/charac
 import { ReactComponent as CharacterAvatarBorder4 } from '../assets/icons/characterAvatarBorder4.svg';
 import { ReactComponent as CharacterAvatarBorder5 } from '../assets/icons/characterAvatarBorder5.svg';
 import { ReactComponent as CharacterAvatarBorder6 } from '../assets/icons/characterAvatarBorder6.svg';
+import { ReactComponent as CharacterFigureBorder1 } from '../assets/icons/characterFigureBorder1.svg';
+import { ReactComponent as CharacterFigureBorder2 } from '../assets/icons/characterFigureBorder2.svg';
+import { ReactComponent as CharacterFigureBorder3 } from '../assets/icons/characterFigureBorder3.svg';
+import { ReactComponent as CharacterFigureBorder4 } from '../assets/icons/characterFigureBorder4.svg';
+import { ReactComponent as CharacterFigureBorder5 } from '../assets/icons/characterFigureBorder5.svg';
+import { ReactComponent as CharacterFigureBorder6 } from '../assets/icons/characterFigureBorder6.svg';
 
 export const CHARACTERS = [
   {
@@ -25,6 +31,7 @@ export const CHARACTERS = [
     avatar: CharacterAvatar1,
     qr: CharacterQr1,
     avatarBorder: CharacterAvatarBorder1,
+    figureBorder: CharacterFigureBorder1,
   },
   {
     id: 2,
@@ -33,6 +40,7 @@ export const CHARACTERS = [
     avatar: CharacterAvatar2,
     qr: CharacterQr2,
     avatarBorder: CharacterAvatarBorder2,
+    figureBorder: CharacterFigureBorder2,
   },
   {
     id: 3,
@@ -41,6 +49,7 @@ export const CHARACTERS = [
     avatar: CharacterAvatar3,
     qr: CharacterQr3,
     avatarBorder: CharacterAvatarBorder3,
+    figureBorder: CharacterFigureBorder3,
   },
   {
     id: 4,
@@ -49,6 +58,7 @@ export const CHARACTERS = [
     avatar: CharacterAvatar4,
     qr: CharacterQr4,
     avatarBorder: CharacterAvatarBorder4,
+    figureBorder: CharacterFigureBorder4,
   },
   {
     id: 5,
@@ -57,6 +67,7 @@ export const CHARACTERS = [
     avatar: CharacterAvatar5,
     qr: CharacterQr5,
     avatarBorder: CharacterAvatarBorder5,
+    figureBorder: CharacterFigureBorder5,
   },
   {
     id: 6,
@@ -65,5 +76,6 @@ export const CHARACTERS = [
     avatar: CharacterAvatar6,
     qr: CharacterQr6,
     avatarBorder: CharacterAvatarBorder6,
+    figureBorder: CharacterFigureBorder6,
   },
 ];
