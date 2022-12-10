@@ -56,6 +56,7 @@ function getCharacterFigureStyles(characterId, fieldSize, characterFigureSize, p
     left: `${fieldSize * position[1] + DEFAULT_SLOTS[characterId].left + horizontalOffset}px`,
     width: `${characterFigureSize}px`,
     height: `${characterFigureSize}px`,
+    willChange: 'left, top',
   };
 }
 
