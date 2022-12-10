@@ -12,7 +12,12 @@ import styles from './index.module.scss';
 export function Game(props) {
   const { department, onChangeDepartment } = props;
   const board = getBoardByDepartment(department);
+  const [gameCompleted, setGameCompleted] = useState(false);
   const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
+
+  function handleCompleteGame() {
+    setGameCompleted(true);
+  }
 
   function handleActivateCharacter(characterId) {
     setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], active: true } }));
@@ -51,6 +56,7 @@ export function Game(props) {
         className={styles.characters}
         characters={CHARACTERS}
         charactersState={charactersState}
+        gameCompleted={gameCompleted}
         onActivate={handleActivateCharacter}
         onUseSuperpower={handleUseCharacterSuperpower}
         onSkillsAmountChange={handleSkillsAmountChange}
@@ -64,7 +70,7 @@ export function Game(props) {
         </div>
         <Board className={styles.board} board={board} characters={CHARACTERS} charactersState={charactersState} />
       </div>
-      <Actions className={styles.actions} />
+      <Actions className={styles.actions} gameCompleted={gameCompleted} onCompleteGame={handleCompleteGame} />
     </div>
   );
 }

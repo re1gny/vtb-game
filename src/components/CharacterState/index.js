@@ -6,13 +6,14 @@ import styles from './index.module.scss';
 const ON_MOVE_DELAY = 1500;
 
 export function CharacterState(props) {
-  const { className, skillsAmount, active, onActivate, onSkillsAmountChange, onMove } = props;
+  const { className, characterState, gameCompleted, onActivate, onSkillsAmountChange, onMove } = props;
+  const { skillsAmount, active } = characterState;
   const [steps, setSteps] = useState(0);
 
   const onMoveTimerRef = useRef(null);
 
   function handleStepsAmountChange() {
-    if (!active) {
+    if (!active || gameCompleted) {
       return;
     }
 
@@ -29,19 +30,22 @@ export function CharacterState(props) {
   }
 
   function handleSkillsAmountChange() {
-    if (active) {
+    if (active && !gameCompleted) {
       onSkillsAmountChange?.(skillsAmount + 1);
     }
   }
 
   function handleActivate() {
-    if (!active) {
+    if (!active && !gameCompleted) {
       onActivate?.();
     }
   }
 
   return (
-    <div className={cn(styles.wrapper, active && styles.active, className)} onClick={handleActivate}>
+    <div
+      className={cn(styles.wrapper, active && styles.active, gameCompleted && styles.gameCompleted, className)}
+      onClick={handleActivate}
+    >
       <div className={styles.steps}>
         <span className={styles.stepsTitle}>Шаги в этот ход</span>
         <div className={styles.stepsInput}>

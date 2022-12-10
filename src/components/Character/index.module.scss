@@ -12,6 +12,14 @@
     filter: blur(5px);
     cursor: pointer;
   }
+
+  &.gameCompleted {
+    cursor: default;
+
+    .superpower {
+      cursor: default;
+    }
+  }
 }
 
 .name {
@@ -30,13 +38,30 @@
   margin-top: 14px;
 }
 
-.avatar {
+.image {
   flex-shrink: 0;
   width: 80px;
   height: 80px;
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 8px;
-  transform: matrix(1, 0, 0, -1, 0, 0);
+  overflow: hidden;
+}
+
+.avatar,
+.qr {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.avatar {
+  background-position: left top;
+  background-size: cover;
+}
+
+.qr {
+  background-position: 6px 6px;
+  background-size: calc(100% - 12px) calc(100% - 12px);
 }
 
 .superpower {
