@@ -14,6 +14,7 @@ export function Characters(props) {
     onSkillsAmountChange,
     onMove,
     onUseSuperpower,
+    onOpenCharacter,
   } = props;
 
   return (
@@ -26,6 +27,7 @@ export function Characters(props) {
             gameCompleted={gameCompleted}
             onActivate={() => onActivate?.(character?.id)}
             onUseSuperpower={() => onUseSuperpower?.(character?.id)}
+            onOpen={() => onOpenCharacter?.(character)}
           />
           <CharacterState
             character={character}

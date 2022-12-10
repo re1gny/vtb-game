@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 34px 47px 50px;
+  background: #002882;
+  border-radius: 30px;
+  width: 806px;
+}
+
+.name {
+  flex-shrink: 0;
+  margin-top: 22.5px;
+  padding: 20px 37px;
+  background: #00ABFF;
+  border-radius: 50px;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 35px;
+}
+
+.avatar {
+  flex-shrink: 0;
+  margin-top: 40px;
+  width: 214px;
+  height: 214px;
+}
+
+.description {
+  flex-shrink: 0;
+  margin-top: 40px;
+  font-weight: 600;
+  font-size: 27px;
+  line-height: 34px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.superpower {
+  flex-shrink: 0;
+  margin-top: 48px;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
+  text-align: center;
+  color: #FFFFFF;
+}

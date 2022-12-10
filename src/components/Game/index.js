@@ -6,6 +6,8 @@ import { getInitialCharactersState } from '../../utils/getInitialCharactersState
 import { getNextFieldIdByFieldId } from '../../utils/getNextFieldIdByFieldId';
 import { Characters } from '../Characters';
 import { Actions } from '../Actions';
+import { GameLayout } from '../GameLayout';
+import { CharacterModal } from '../CharacterModal';
 import { DEPARTMENT_TITLE } from '../../constants/departments';
 import styles from './index.module.scss';
 
@@ -14,6 +16,7 @@ export function Game(props) {
   const board = getBoardByDepartment(department);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
+  const [openedCharacter, setOpenedCharacter] = useState(null);
 
   function handleCompleteGame() {
     setGameCompleted(true);
@@ -51,12 +54,13 @@ export function Game(props) {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <GameLayout className={styles.wrapper}>
       <Characters
         className={styles.characters}
         characters={CHARACTERS}
         charactersState={charactersState}
         gameCompleted={gameCompleted}
+        onOpenCharacter={setOpenedCharacter}
         onActivate={handleActivateCharacter}
         onUseSuperpower={handleUseCharacterSuperpower}
         onSkillsAmountChange={handleSkillsAmountChange}
@@ -71,6 +75,12 @@ export function Game(props) {
         <Board className={styles.board} board={board} characters={CHARACTERS} charactersState={charactersState} />
       </div>
       <Actions className={styles.actions} gameCompleted={gameCompleted} onCompleteGame={handleCompleteGame} />
-    </div>
+      <CharacterModal
+        opened={!!openedCharacter}
+        character={openedCharacter}
+        gameCompleted={gameCompleted}
+        onClose={() => setOpenedCharacter(null)}
+      />
+    </GameLayout>
   );
 }

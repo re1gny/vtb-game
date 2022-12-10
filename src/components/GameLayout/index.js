@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { ReactComponent as VTBLogoIcon } from '../../assets/icons/vtbLogo.svg';
 import styles from './index.module.scss';
 
-export function Layout(props) {
+export function GameLayout(props) {
   const { className, children } = props;
 
   return (
