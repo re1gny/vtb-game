@@ -36,6 +36,7 @@ export function Characters(props) {
             onActivate={() => onActivate?.(character?.id)}
             onSkillsAmountChange={(value) => onSkillsAmountChange?.(character?.id, value)}
             onMove={(steps) => onMove?.(character?.id, steps)}
+            onOpen={() => onOpenCharacter?.(character)}
           />
         </Fragment>
       ))}

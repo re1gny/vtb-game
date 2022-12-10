@@ -12,6 +12,7 @@ import { PromotionModal } from '../PromotionModal';
 import { WinnerCongratulationsModal } from '../WinnerCongratulationsModal';
 import { DEPARTMENT_TITLE } from '../../constants/departments';
 import { getWinners } from '../../utils/getWinners';
+import { getFieldIndexByFieldId } from '../../utils/getFieldIndexByFieldId';
 import styles from './index.module.scss';
 
 export function Game(props) {
@@ -23,7 +24,7 @@ export function Game(props) {
   const [currentPromotion, setCurrentPromotion] = useState(null);
   const [winners, setWinners] = useState(null);
 
-  function handleCompleteGame() {
+  function handleCompleteGame(charactersState) {
     setGameCompleted(true);
     setWinners(getWinners(CHARACTERS, charactersState, board));
   }
@@ -40,7 +41,12 @@ export function Game(props) {
     setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], skillsAmount } }));
   }
 
-  function handleField(field) {
+  function handleField(field, charactersState) {
+    if (getFieldIndexByFieldId(field?.id, board) === board?.path?.length - 1) {
+      handleCompleteGame(charactersState);
+      return;
+    }
+
     if (field?.type === 'promotion') {
       setCurrentPromotion(field);
     }
@@ -49,12 +55,16 @@ export function Game(props) {
   function handleCharacterStep(prevCharactersState, characterId) {
     const nextField = getNextFieldByFieldId(prevCharactersState[characterId].fieldId, board);
 
-    handleField(nextField);
+    if (!nextField) {
+      return prevCharactersState;
+    }
 
     const nextCharactersState = {
       ...prevCharactersState,
       [characterId]: { ...prevCharactersState[characterId], fieldId: nextField?.id },
     };
+
+    handleField(nextField, nextCharactersState);
     setCharactersState(nextCharactersState);
 
     return nextCharactersState;
@@ -99,7 +109,11 @@ export function Game(props) {
         </div>
         <Board className={styles.board} board={board} characters={CHARACTERS} charactersState={charactersState} />
       </div>
-      <Actions className={styles.actions} gameCompleted={gameCompleted} onCompleteGame={handleCompleteGame} />
+      <Actions
+        className={styles.actions}
+        gameCompleted={gameCompleted}
+        onCompleteGame={() => handleCompleteGame(charactersState)}
+      />
       <CharacterModal
         opened={!!openedCharacter}
         character={openedCharacter}
