@@ -12,20 +12,22 @@ export function GameSelector(props) {
 
   return (
     <GameSelectorLayout className={styles.wrapper}>
-      <GameSelectorTarget className={styles.target} />
-      <GameSelectorHeadphones className={styles.headphones} />
-      <div className={styles.panel}>
-        <div className={styles.title}>Выберите игру</div>
-        <div className={styles.departments}>
-          {DEPARTMENTS.map((department) => (
-            <div key={department} className={styles.department} onClick={() => onSelectDepartment?.(department)}>
-              {DEPARTMENT_TITLE[department]}
-            </div>
-          ))}
+      <div className={styles.panelWrapper}>
+        <GameSelectorTarget className={styles.target} />
+        <GameSelectorHeadphones className={styles.headphones} />
+        <div className={styles.panel}>
+          <div className={styles.title}>Выберите игру</div>
+          <div className={styles.departments}>
+            {DEPARTMENTS.map((department) => (
+              <div key={department} className={styles.department} onClick={() => onSelectDepartment?.(department)}>
+                {DEPARTMENT_TITLE[department]}
+              </div>
+            ))}
+          </div>
         </div>
+        <GameSelectorStar className={styles.star} />
+        <GameSelectorLightning className={styles.lightning} />
       </div>
-      <GameSelectorStar className={styles.star} />
-      <GameSelectorLightning className={styles.lightning} />
     </GameSelectorLayout>
   );
 }
