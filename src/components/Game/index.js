@@ -19,6 +19,7 @@ import { SkillCardModal } from '../SkillCardModal';
 import { TaskCardModal } from '../TaskCardModal';
 import { getFieldsBetweenFieldsIds } from '../../utils/getFieldsBetweenFieldsIds';
 import { getFieldByPosition } from '../../utils/getFieldByPosition';
+import { normalizeCharacterSteps } from '../../utils/normalizeCharacterSteps';
 import styles from './index.module.scss';
 
 export function Game(props) {
@@ -115,9 +116,10 @@ export function Game(props) {
     }
 
     const initialFieldId = charactersState[characterId]?.fieldId;
+    const normalizedSteps = normalizeCharacterSteps(initialFieldId, steps, board);
 
-    for (let step = 1; step <= steps; step++) {
-      setTimeout(() => handleCharacterStep(characterId, step, steps, initialFieldId), step * 100);
+    for (let step = 1; step <= normalizedSteps; step++) {
+      setTimeout(() => handleCharacterStep(characterId, step, normalizedSteps, initialFieldId), step * 100);
     }
   }
 
