@@ -21,7 +21,7 @@
   max-height: calc(100% - (64px * var(--sizeCoefficient)));
   box-sizing: border-box;
   z-index: 1001;
-  animation: contentAppear 0.2s forwards;
+  animation: contentAppear 0.2s both;
 }
 
 @keyframes backdropAppear {

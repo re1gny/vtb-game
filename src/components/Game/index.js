@@ -23,9 +23,6 @@ import styles from './index.module.scss';
 export function Game(props) {
   const { className, department } = props;
   const board = getBoardByDepartment(department);
-  const [leftChanceCards, setLeftChanceCard] = useState(CHANCE_CARDS);
-  const [leftSkillCards, setLeftSkillCard] = useState(SKILL_CARDS);
-  const [leftTaskCards, setLeftTaskCard] = useState(TASK_CARDS);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
   const [openedCharacter, setOpenedCharacter] = useState(null);
@@ -53,30 +50,18 @@ export function Game(props) {
   }
 
   function handleRandomizeSkill() {
-    const card = getRandomCard(leftSkillCards);
-
-    if (card) {
-      setLeftSkillCard((prev) => prev.filter(({ id }) => id !== card.id));
-      setSkillCard(card);
-    }
+    const card = getRandomCard(SKILL_CARDS);
+    setSkillCard(card);
   }
 
   function handleRandomizeTask() {
-    const card = getRandomCard(leftTaskCards);
-
-    if (card) {
-      setLeftTaskCard((prev) => prev.filter(({ id }) => id !== card.id));
-      setTaskCard(card);
-    }
+    const card = getRandomCard(TASK_CARDS);
+    setTaskCard(card);
   }
 
   function handleRandomizeChance() {
-    const card = getRandomCard(leftChanceCards);
-
-    if (card) {
-      setLeftChanceCard((prev) => prev.filter(({ id }) => id !== card.id));
-      setChanceCard(card);
-    }
+    const card = getRandomCard(CHANCE_CARDS);
+    setChanceCard(card);
   }
 
   function handleField(field, charactersState) {
@@ -149,8 +134,6 @@ export function Game(props) {
       <ActionsBlock
         className={styles.actions}
         gameCompleted={gameCompleted}
-        skillCards={leftSkillCards}
-        taskCards={leftTaskCards}
         onCompleteGame={() => handleCompleteGame(charactersState)}
         onRandomizeSkill={handleRandomizeSkill}
         onRandomizeTask={handleRandomizeTask}
