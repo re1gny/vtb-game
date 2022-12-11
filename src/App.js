@@ -1,10 +1,12 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
+import cn from 'classnames';
 import useResizeObserver from 'use-resize-observer';
 import { Game } from './components/Game';
 import { GameSelector } from './components/GameSelector';
 import styles from './App.module.scss';
 
-function App() {
+function App(props) {
+  const { className } = props;
   const [department, setDepartment] = useState(null);
   const [sizeCoefficient, setSizeCoefficient] = useState(1);
 
@@ -21,8 +23,12 @@ function App() {
   useResizeObserver({ onResize: handleCalculateSizeCoefficient, ref: appRef });
 
   return (
-    <div ref={appRef} className={styles.wrapper} style={{ '--sizeCoefficient': sizeCoefficient }}>
-      {department ? <Game department={department} /> : <GameSelector onSelectDepartment={setDepartment} />}
+    <div ref={appRef} className={cn(styles.wrapper, className)} style={{ '--sizeCoefficient': sizeCoefficient }}>
+      {department ? (
+        <Game className={styles.game} department={department} />
+      ) : (
+        <GameSelector className={styles.gameSelector} onSelectDepartment={setDepartment} />
+      )}
     </div>
   );
 }

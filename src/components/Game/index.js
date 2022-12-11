@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Board } from '../Board';
+import cn from 'classnames';
 import { CHARACTERS } from '../../constants/characters';
 import { getBoardByDepartment } from '../../utils/getBoardByDepartment';
 import { getInitialCharactersState } from '../../utils/getInitialCharactersState';
@@ -11,7 +11,6 @@ import { GameLayout } from '../GameLayout';
 import { CharacterModal } from '../CharacterModal';
 import { PromotionModal } from '../PromotionModal';
 import { WinnerCongratulationsModal } from '../WinnerCongratulationsModal';
-import { DEPARTMENT_TITLE } from '../../constants/departments';
 import { getWinners } from '../../utils/getWinners';
 import { getFieldIndexByFieldId } from '../../utils/getFieldIndexByFieldId';
 import { ChanceCardModal } from '../ChanceCardModal';
@@ -22,7 +21,7 @@ import { TaskCardModal } from '../TaskCardModal';
 import styles from './index.module.scss';
 
 export function Game(props) {
-  const { department } = props;
+  const { className, department } = props;
   const board = getBoardByDepartment(department);
   const [leftChanceCards, setLeftChanceCard] = useState(CHANCE_CARDS);
   const [leftSkillCards, setLeftSkillCard] = useState(SKILL_CARDS);
@@ -128,7 +127,7 @@ export function Game(props) {
   }
 
   return (
-    <GameLayout className={styles.wrapper}>
+    <GameLayout className={cn(styles.wrapper, className)}>
       <CharactersBlock
         className={styles.characters}
         characters={CHARACTERS}

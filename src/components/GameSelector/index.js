@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { ReactComponent as GameSelectorLightning } from '../../assets/icons/gameSelectorLightning.svg';
 import { ReactComponent as GameSelectorStar } from '../../assets/icons/gameSelectorStar.svg';
 import { ReactComponent as GameSelectorHeadphones } from '../../assets/icons/gameSelectorHeadphones.svg';
@@ -8,10 +9,10 @@ import { DEPARTMENTS, DEPARTMENT_TITLE } from '../../constants/departments';
 import styles from './index.module.scss';
 
 export function GameSelector(props) {
-  const { onSelectDepartment } = props;
+  const { className, onSelectDepartment } = props;
 
   return (
-    <GameSelectorLayout className={styles.wrapper}>
+    <GameSelectorLayout className={cn(styles.wrapper, className)}>
       <div className={styles.panelWrapper}>
         <GameSelectorTarget className={styles.target} />
         <GameSelectorHeadphones className={styles.headphones} />
