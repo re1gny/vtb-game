@@ -17,7 +17,7 @@ import { getRandomCard } from '../../utils/getRandomCard';
 import { CHANCE_CARDS, SKILL_CARDS, TASK_CARDS } from '../../constants/cards';
 import { SkillCardModal } from '../SkillCardModal';
 import { TaskCardModal } from '../TaskCardModal';
-import { getFieldsTillFieldId } from '../../utils/getFieldsTillFieldId';
+import { getFieldsBetweenFieldsIds } from '../../utils/getFieldsBetweenFieldsIds';
 import { getFieldByPosition } from '../../utils/getFieldByPosition';
 import styles from './index.module.scss';
 
@@ -66,11 +66,14 @@ export function Game(props) {
   }
 
   function handlePassedCharacterSteps(initialFieldId, nextFieldId, nextCharactersState) {
-    const passedFields = getFieldsTillFieldId(initialFieldId, nextFieldId, board) || [];
+    const passedFields = getFieldsBetweenFieldsIds(initialFieldId, nextFieldId, board, { includeEnd: true }) || [];
 
     const lastPassedField = passedFields[passedFields.length - 1];
 
-    if (lastPassedField && lastPassedField.id === getFieldByPosition(board.path[board.path.length - 1], board)) {
+    if (
+      lastPassedField?.id &&
+      lastPassedField.id === getFieldByPosition(board.path[board.path.length - 1], board)?.id
+    ) {
       handleCompleteGame(nextCharactersState);
       return;
     }
@@ -89,6 +92,7 @@ export function Game(props) {
       const nextField = getNextFieldByFieldId(prev[characterId]?.fieldId, board);
 
       if (!nextField) {
+        handlePassedCharacterSteps(initialFieldId, prev[characterId]?.fieldId, prev);
         return prev;
       }
 
