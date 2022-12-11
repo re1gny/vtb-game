@@ -12,20 +12,19 @@ import { CharacterModal } from '../CharacterModal';
 import { PromotionModal } from '../PromotionModal';
 import { WinnerCongratulationsModal } from '../WinnerCongratulationsModal';
 import { getWinners } from '../../utils/getWinners';
-import { getFieldIndexByFieldId } from '../../utils/getFieldIndexByFieldId';
 import { ChanceCardModal } from '../ChanceCardModal';
 import { getRandomCard } from '../../utils/getRandomCard';
 import { CHANCE_CARDS, SKILL_CARDS, TASK_CARDS } from '../../constants/cards';
 import { SkillCardModal } from '../SkillCardModal';
 import { TaskCardModal } from '../TaskCardModal';
+import { getFieldsBetweenFieldsIds } from '../../utils/getFieldsBetweenFieldsIds';
+import { getFieldByPosition } from '../../utils/getFieldByPosition';
+import { normalizeCharacterSteps } from '../../utils/normalizeCharacterSteps';
 import styles from './index.module.scss';
 
 export function Game(props) {
   const { className, department } = props;
   const board = getBoardByDepartment(department);
-  const [leftChanceCards, setLeftChanceCard] = useState(CHANCE_CARDS);
-  const [leftSkillCards, setLeftSkillCard] = useState(SKILL_CARDS);
-  const [leftTaskCards, setLeftTaskCard] = useState(TASK_CARDS);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
   const [openedCharacter, setOpenedCharacter] = useState(null);
@@ -53,63 +52,62 @@ export function Game(props) {
   }
 
   function handleRandomizeSkill() {
-    const card = getRandomCard(leftSkillCards);
-
-    if (card) {
-      setLeftSkillCard((prev) => prev.filter(({ id }) => id !== card.id));
-      setSkillCard(card);
-    }
+    const card = getRandomCard(SKILL_CARDS);
+    setSkillCard(card);
   }
 
   function handleRandomizeTask() {
-    const card = getRandomCard(leftTaskCards);
-
-    if (card) {
-      setLeftTaskCard((prev) => prev.filter(({ id }) => id !== card.id));
-      setTaskCard(card);
-    }
+    const card = getRandomCard(TASK_CARDS);
+    setTaskCard(card);
   }
 
   function handleRandomizeChance() {
-    const card = getRandomCard(leftChanceCards);
-
-    if (card) {
-      setLeftChanceCard((prev) => prev.filter(({ id }) => id !== card.id));
-      setChanceCard(card);
-    }
+    const card = getRandomCard(CHANCE_CARDS);
+    setChanceCard(card);
   }
 
-  function handleField(field, charactersState) {
-    if (getFieldIndexByFieldId(field?.id, board) === board?.path?.length - 1) {
-      handleCompleteGame(charactersState);
+  function handlePassedCharacterSteps(initialFieldId, nextFieldId, nextCharactersState) {
+    const passedFields = getFieldsBetweenFieldsIds(initialFieldId, nextFieldId, board, { includeEnd: true }) || [];
+
+    const lastPassedField = passedFields[passedFields.length - 1];
+
+    if (
+      lastPassedField?.id &&
+      lastPassedField.id === getFieldByPosition(board.path[board.path.length - 1], board)?.id
+    ) {
+      handleCompleteGame(nextCharactersState);
       return;
     }
 
-    if (field?.type === 'promotion') {
-      setCurrentPromotion(field);
+    if (passedFields.some(({ type }) => type === 'promotion')) {
+      setCurrentPromotion([...passedFields].reverse().find(({ type }) => type === 'promotion'));
     }
 
-    if (field?.type === 'chance') {
+    if (lastPassedField?.type === 'chance') {
       handleRandomizeChance();
     }
   }
 
-  function handleCharacterStep(prevCharactersState, characterId) {
-    const nextField = getNextFieldByFieldId(prevCharactersState[characterId].fieldId, board);
+  function handleCharacterStep(characterId, step, steps, initialFieldId) {
+    setCharactersState((prev) => {
+      const nextField = getNextFieldByFieldId(prev[characterId]?.fieldId, board);
 
-    if (!nextField) {
-      return prevCharactersState;
-    }
+      if (!nextField) {
+        handlePassedCharacterSteps(initialFieldId, prev[characterId]?.fieldId, prev);
+        return prev;
+      }
 
-    const nextCharactersState = {
-      ...prevCharactersState,
-      [characterId]: { ...prevCharactersState[characterId], fieldId: nextField?.id },
-    };
+      const nextCharactersState = {
+        ...prev,
+        [characterId]: { ...prev[characterId], fieldId: nextField.id },
+      };
 
-    handleField(nextField, nextCharactersState);
-    setCharactersState(nextCharactersState);
+      if (step === steps) {
+        handlePassedCharacterSteps(initialFieldId, nextField.id, nextCharactersState);
+      }
 
-    return nextCharactersState;
+      return nextCharactersState;
+    });
   }
 
   function handleCharacterMove(characterId, steps) {
@@ -117,12 +115,11 @@ export function Game(props) {
       return;
     }
 
-    let nextCharactersState = charactersState;
+    const initialFieldId = charactersState[characterId]?.fieldId;
+    const normalizedSteps = normalizeCharacterSteps(initialFieldId, steps, board);
 
-    for (let i = 0; i < steps; i++) {
-      setTimeout(() => {
-        nextCharactersState = handleCharacterStep(nextCharactersState, characterId);
-      }, i * 100);
+    for (let step = 1; step <= normalizedSteps; step++) {
+      setTimeout(() => handleCharacterStep(characterId, step, normalizedSteps, initialFieldId), step * 100);
     }
   }
 
@@ -149,12 +146,15 @@ export function Game(props) {
       <ActionsBlock
         className={styles.actions}
         gameCompleted={gameCompleted}
-        skillCards={leftSkillCards}
-        taskCards={leftTaskCards}
         onCompleteGame={() => handleCompleteGame(charactersState)}
         onRandomizeSkill={handleRandomizeSkill}
         onRandomizeTask={handleRandomizeTask}
       />
+      <WinnerCongratulationsModal opened={!!winners?.length} winners={winners} onClose={() => setWinners(null)} />
+      <ChanceCardModal opened={!!chanceCard} card={chanceCard} onClose={() => setChanceCard(null)} />
+      <PromotionModal opened={!!currentPromotion} onClose={() => setCurrentPromotion(null)} />
+      <SkillCardModal opened={!!skillCard} card={skillCard} onClose={() => setSkillCard(null)} />
+      <TaskCardModal opened={!!taskCard} card={taskCard} onClose={() => setTaskCard(null)} />
       <CharacterModal
         opened={!!openedCharacter}
         character={openedCharacter}
@@ -162,11 +162,6 @@ export function Game(props) {
         gameCompleted={gameCompleted}
         onClose={() => setOpenedCharacter(null)}
       />
-      <PromotionModal opened={!!currentPromotion} onClose={() => setCurrentPromotion(null)} />
-      <WinnerCongratulationsModal opened={!!winners?.length} winners={winners} onClose={() => setWinners(null)} />
-      <ChanceCardModal opened={!!chanceCard} card={chanceCard} onClose={() => setChanceCard(null)} />
-      <SkillCardModal opened={!!skillCard} card={skillCard} onClose={() => setSkillCard(null)} />
-      <TaskCardModal opened={!!taskCard} card={taskCard} onClose={() => setTaskCard(null)} />
     </GameLayout>
   );
 }

@@ -17,10 +17,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left top;
-  transition: all 0.2s;
 
-  &.gameCompleted,
-  &.hasNoCards {
+  &.gameCompleted {
     opacity: 0;
     pointer-events: none;
     cursor: default;

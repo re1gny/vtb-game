@@ -3,7 +3,7 @@ import cn from 'classnames';
 import styles from './index.module.scss';
 
 export function CardRandomizer(props) {
-  const { className, background, logo: Logo, gameCompleted, hasNoCards, onRandomize } = props;
+  const { className, background, logo: Logo, gameCompleted, onRandomize } = props;
 
   function handleRandomize() {
     if (!gameCompleted) {
@@ -14,7 +14,7 @@ export function CardRandomizer(props) {
   return (
     <div
       style={{ backgroundImage: `url(${background})` }}
-      className={cn(styles.wrapper, gameCompleted && styles.gameCompleted, hasNoCards && styles.hasNoCards, className)}
+      className={cn(styles.wrapper, gameCompleted && styles.gameCompleted, className)}
       onClick={handleRandomize}
     >
       <div className={styles.backgroundOverlay} />

@@ -24,11 +24,11 @@ function App(props) {
 
   return (
     <div ref={appRef} className={cn(styles.wrapper, className)} style={{ '--sizeCoefficient': sizeCoefficient }}>
-      {department ? (
-        <Game className={styles.game} department={department} />
-      ) : (
-        <GameSelector className={styles.gameSelector} onSelectDepartment={setDepartment} />
-      )}
+      <GameSelector
+        className={cn(styles.gameSelector, !!department && styles.hidden)}
+        onSelectDepartment={setDepartment}
+      />
+      <Game className={cn(styles.game, !department && styles.hidden)} department={department} />
     </div>
   );
 }
