@@ -4,8 +4,9 @@ import { CHARACTERS } from '../../constants/characters';
 import { getBoardByDepartment } from '../../utils/getBoardByDepartment';
 import { getInitialCharactersState } from '../../utils/getInitialCharactersState';
 import { getNextFieldByFieldId } from '../../utils/getNextFieldByFieldId';
-import { Characters } from '../Characters';
-import { Actions } from '../Actions';
+import { CharactersBlock } from '../CharactersBlock';
+import { ActionsBlock } from '../ActionsBlock';
+import { BoardBlock } from '../BoardBlock';
 import { GameLayout } from '../GameLayout';
 import { CharacterModal } from '../CharacterModal';
 import { PromotionModal } from '../PromotionModal';
@@ -128,7 +129,7 @@ export function Game(props) {
 
   return (
     <GameLayout className={styles.wrapper}>
-      <Characters
+      <CharactersBlock
         className={styles.characters}
         characters={CHARACTERS}
         charactersState={charactersState}
@@ -139,13 +140,14 @@ export function Game(props) {
         onSkillsAmountChange={handleSkillsAmountChange}
         onMove={handleCharacterMove}
       />
-      <div className={styles.main}>
-        <div className={styles.titleWrapper}>
-          <div className={styles.title}>{DEPARTMENT_TITLE[department]}</div>
-        </div>
-        <Board className={styles.board} board={board} characters={CHARACTERS} charactersState={charactersState} />
-      </div>
-      <Actions
+      <BoardBlock
+        className={styles.main}
+        department={department}
+        board={board}
+        characters={CHARACTERS}
+        charactersState={charactersState}
+      />
+      <ActionsBlock
         className={styles.actions}
         gameCompleted={gameCompleted}
         skillCards={leftSkillCards}

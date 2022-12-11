@@ -4,7 +4,7 @@ import { Character } from '../Character';
 import { CharacterState } from '../CharacterState';
 import styles from './index.module.scss';
 
-export function Characters(props) {
+export function CharactersBlock(props) {
   const {
     className,
     gameCompleted,

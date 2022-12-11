@@ -4,42 +4,14 @@
 
 .characters {
   flex-shrink: 0;
-  width: 36%;
-  overflow: auto;
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
   flex-grow: 1;
   margin-left: 85px;
-}
-
-.titleWrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  padding: 15px 40px;
-  background: #FFFFFF;
-  box-shadow: 0 1px 20px #82D9FF;
-  border-radius: 64px;
-  font-weight: 600;
-  font-size: 25px;
-  line-height: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #0094FF;
-}
-
-.board {
-  flex-grow: 1;
-  margin-top: 44px;
 }
 
 .actions {
   flex-shrink: 0;
   margin-left: 85px;
-  width: 240px;
 }

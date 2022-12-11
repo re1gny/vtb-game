@@ -5,7 +5,7 @@ import { SKILL_RANDOMIZER, TASK_RANDOMIZER } from '../../constants/cardsRandomiz
 import styles from './index.module.scss';
 import { CompleteButton } from '../CompleteButton';
 
-export function Actions(props) {
+export function ActionsBlock(props) {
   const { className, gameCompleted, taskCards, skillCards, onCompleteGame, onRandomizeTask, onRandomizeSkill } = props;
 
   return (

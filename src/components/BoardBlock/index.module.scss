@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  padding: 15px 40px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 20px #82D9FF;
+  border-radius: 64px;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #0094FF;
+}
+
+.board {
+  flex-grow: 1;
+  margin-top: 44px;
+}
