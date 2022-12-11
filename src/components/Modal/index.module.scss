@@ -6,7 +6,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
-  padding: 32px;
+  padding: calc(32px * var(--sizeCoefficient));
   box-sizing: border-box;
   z-index: 1000;
   animation: backdropAppear 0.2s forwards;
@@ -17,8 +17,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: calc(100% - 64px);
-  max-height: calc(100% - 64px);
+  max-width: calc(100% - (64px * var(--sizeCoefficient)));
+  max-height: calc(100% - (64px * var(--sizeCoefficient)));
   box-sizing: border-box;
   z-index: 1001;
   animation: contentAppear 0.2s forwards;

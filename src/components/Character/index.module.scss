@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 16px 14px;
+  justify-content: center;
+  padding: calc(16px * var(--sizeCoefficient)) calc(14px * var(--sizeCoefficient));
   background: #002882;
-  border-radius: 20px;
+  border-radius: calc(20px * var(--sizeCoefficient));
   transition: all 0.2s;
 
   &:not(.active) {
@@ -37,46 +38,46 @@
 }
 
 .name {
-  padding: 8px 15px;
+  padding: calc(8px * var(--sizeCoefficient)) calc(15px * var(--sizeCoefficient));
   background: #00abff;
-  border-radius: 20px;
+  border-radius: calc(20px * var(--sizeCoefficient));
   color: #ffffff;
   text-align: center;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 14px;
+  font-size: calc(14px * var(--sizeCoefficient));
+  line-height: calc(14px * var(--sizeCoefficient));
 }
 
 .main {
   display: flex;
-  margin-top: 14px;
+  margin-top: calc(14px * var(--sizeCoefficient));
 }
 
 .avatar {
   flex-shrink: 0;
-  width: 80px;
-  height: 80px;
+  width: calc(80px * var(--sizeCoefficient));
+  height: calc(80px * var(--sizeCoefficient));
 }
 
 .superpower {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 14px;
+  margin-left: calc(14px * var(--sizeCoefficient));
   transition: all 0.2s;
 }
 
 .superpowerTitle {
   font-weight: 700;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: calc(14px * var(--sizeCoefficient));
+  line-height: calc(18px * var(--sizeCoefficient));
   color: #ffffff;
 }
 
 .superpowerValue {
-  margin-top: 4px;
+  margin-top: calc(4px * var(--sizeCoefficient));
   font-weight: 400;
-  font-size: 13px;
-  line-height: 15px;
+  font-size: calc(13px * var(--sizeCoefficient));
+  line-height: calc(15px * var(--sizeCoefficient));
   color: #ffffff;
 }

@@ -2,16 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 90px 118px;
+  padding: calc(90px * var(--sizeCoefficient)) calc(118px * var(--sizeCoefficient));
   background: #002882;
-  border-radius: 30px;
-  width: 1138px;
+  border-radius: calc(30px * var(--sizeCoefficient));
+  width: calc(1138px * var(--sizeCoefficient));
 }
 
 .title {
   font-weight: 700;
-  font-size: 50px;
-  line-height: 64px;
+  font-size: calc(50px * var(--sizeCoefficient));
+  line-height: calc(64px * var(--sizeCoefficient));
   text-align: center;
   color: #FFFFFF;
 }
@@ -19,35 +19,35 @@
 .text {
   margin-top: 60px;
   font-weight: 600;
-  font-size: 50px;
-  line-height: 64px;
+  font-size: calc(50px * var(--sizeCoefficient));
+  line-height: calc(64px * var(--sizeCoefficient));
   text-align: center;
   color: #FFFFFF;
 }
 
 .star {
   position: absolute;
-  width: 384px;
-  height: 384px;
-  right: -154px;
-  top: -188px;
+  width: calc(384px * var(--sizeCoefficient));
+  height: calc(384px * var(--sizeCoefficient));
+  right: calc(-154px * var(--sizeCoefficient));
+  top: calc(-188px * var(--sizeCoefficient));
   z-index: -1;
 }
 
 .line {
   position: absolute;
-  width: 285px;
-  height: 322px;
-  right: -150px;
-  top: 28px;
+  width: calc(285px * var(--sizeCoefficient));
+  height: calc(322px * var(--sizeCoefficient));
+  right: calc(-150px * var(--sizeCoefficient));
+  top: calc(28px * var(--sizeCoefficient));
   z-index: -1;
 }
 
 .cup {
   position: absolute;
-  width: 420px;
-  height: 532px;
-  top: -62px;
-  left: -200px;
+  width: calc(420px * var(--sizeCoefficient));
+  height: calc(532px * var(--sizeCoefficient));
+  top: calc(-62px * var(--sizeCoefficient));
+  left: calc(-200px * var(--sizeCoefficient));
   z-index: -1;
 }

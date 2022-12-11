@@ -3,19 +3,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 34px 47px 50px;
+  padding: calc(34px * var(--sizeCoefficient)) calc(47px * var(--sizeCoefficient)) calc(50px * var(--sizeCoefficient));
   background: #002882;
-  border-radius: 30px;
-  width: 806px;
+  border-radius: calc(30px * var(--sizeCoefficient));
+  width: calc(806px * var(--sizeCoefficient));
   overflow: auto;
 }
 
 .avatarBackdrop {
   position: absolute;
-  top: 34px;
-  left: 67px;
-  width: calc(100% - 134px);
-  height: 554px;
+  top: calc(34px * var(--sizeCoefficient));
+  left: calc(67px * var(--sizeCoefficient));
+  width: calc(100% - (134px * var(--sizeCoefficient)));
+  height: calc(554px * var(--sizeCoefficient));
   background: rgba(0, 200, 255, 0.4);
   filter: blur(126.18px);
   border-radius: 50%;
@@ -23,40 +23,40 @@
 
 .name {
   flex-shrink: 0;
-  margin-top: 22.5px;
-  padding: 20px 37px;
-  background: #00ABFF;
-  border-radius: 50px;
+  margin-top: calc(22.5px * var(--sizeCoefficient));
+  padding: calc(20px * var(--sizeCoefficient)) calc(37px * var(--sizeCoefficient));
+  background: #00abff;
+  border-radius: calc(50px * var(--sizeCoefficient));
   color: #ffffff;
   text-align: center;
   font-weight: 600;
-  font-size: 34px;
-  line-height: 35px;
+  font-size: calc(34px * var(--sizeCoefficient));
+  line-height: calc(35px * var(--sizeCoefficient));
 }
 
 .avatar {
   flex-shrink: 0;
-  margin-top: 40px;
-  width: 214px;
-  height: 214px;
+  margin-top: calc(40px * var(--sizeCoefficient));
+  width: calc(214px * var(--sizeCoefficient));
+  height: calc(214px * var(--sizeCoefficient));
 }
 
 .description {
   flex-shrink: 0;
-  margin-top: 40px;
+  margin-top: calc(40px * var(--sizeCoefficient));
   font-weight: 600;
-  font-size: 27px;
-  line-height: 34px;
+  font-size: calc(27px * var(--sizeCoefficient));
+  line-height: calc(34px * var(--sizeCoefficient));
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .superpower {
   flex-shrink: 0;
-  margin-top: 48px;
+  margin-top: calc(48px * var(--sizeCoefficient));
   font-weight: 600;
-  font-size: 22px;
-  line-height: 28px;
+  font-size: calc(22px * var(--sizeCoefficient));
+  line-height: calc(28px * var(--sizeCoefficient));
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }

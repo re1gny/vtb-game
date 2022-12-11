@@ -13,16 +13,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 170px;
+  padding: calc(60px * var(--sizeCoefficient)) calc(170px * var(--sizeCoefficient));
   background: #FFFFFF;
-  border-radius: 30px;
+  border-radius: calc(30px * var(--sizeCoefficient));
   z-index: 1;
 }
 
 .title {
   font-weight: 700;
-  font-size: 41px;
-  line-height: 52px;
+  font-size: calc(41px * var(--sizeCoefficient));
+  line-height: calc(52px * var(--sizeCoefficient));
   text-align: center;
   color: #002882;
 }
@@ -30,64 +30,64 @@
 .departments {
   display: flex;
   flex-direction: column;
-  margin-top: 38px;
+  margin-top: calc(38px * var(--sizeCoefficient));
 }
 
 .department {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 126px;
+  padding: calc(18px * var(--sizeCoefficient)) calc(126px * var(--sizeCoefficient));
   background: #002882;
-  border-radius: 26px;
+  border-radius: calc(26px * var(--sizeCoefficient));
   font-weight: 600;
-  font-size: 41px;
-  line-height: 52px;
+  font-size: calc(41px * var(--sizeCoefficient));
+  line-height: calc(52px * var(--sizeCoefficient));
   color: #FFFFFF;
   text-align: center;
   cursor: pointer;
 
   & + & {
-    margin-top: 38px;
+    margin-top: calc(38px * var(--sizeCoefficient));
   }
 }
 
 .target {
   position: absolute;
   z-index: -1;
-  width: 656px;
-  height: 659px;
-  left: -434px;
-  top: -322px;
+  width: calc(656px * var(--sizeCoefficient));
+  height: calc(659px * var(--sizeCoefficient));
+  left: calc(-434px * var(--sizeCoefficient));
+  top: calc(-322px * var(--sizeCoefficient));
   pointer-events: none;
 }
 
 .headphones {
   position: absolute;
-  width: 486px;
-  height: 498px;
-  top: -306px;
-  right: -230px;
+  width: calc(486px * var(--sizeCoefficient));
+  height: calc(498px * var(--sizeCoefficient));
+  top: calc(-306px * var(--sizeCoefficient));
+  right: calc(-230px * var(--sizeCoefficient));
   z-index: -1;
   pointer-events: none;
 }
 
 .star {
   position: absolute;
-  width: 394px;
-  height: 395px;
-  top: 210px;
-  left: -172px;
+  width: calc(394px * var(--sizeCoefficient));
+  height: calc(395px * var(--sizeCoefficient));
+  top: calc(210px * var(--sizeCoefficient));
+  left: calc(-172px * var(--sizeCoefficient));
   z-index: 2;
   pointer-events: none;
 }
 
 .lightning {
   position: absolute;
-  width: 441px;
-  height: 569px;
-  top: 170px;
-  right: -270px;
+  width: calc(441px * var(--sizeCoefficient));
+  height: calc(569px * var(--sizeCoefficient));
+  top: calc(170px * var(--sizeCoefficient));
+  right: calc(-270px * var(--sizeCoefficient));
   z-index: 2;
   pointer-events: none;
 }

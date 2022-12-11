@@ -5,8 +5,8 @@
 
 .description {
   font-weight: 700;
-  font-size: 32px;
-  line-height: 41px;
+  font-size: calc(32px * var(--sizeCoefficient));
+  line-height: calc(41px * var(--sizeCoefficient));
   text-align: center;
   white-space: pre-wrap;
   color: #002882;

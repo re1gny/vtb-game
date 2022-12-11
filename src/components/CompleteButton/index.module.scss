@@ -1,12 +1,12 @@
 .completeButton {
   outline: none;
   border: none;
-  padding: 10px 25px;
+  padding: calc(10px * var(--sizeCoefficient)) calc(25px * var(--sizeCoefficient));
   background: #002882;
-  border-radius: 64px;
+  border-radius: calc(64px * var(--sizeCoefficient));
   font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: calc(16px * var(--sizeCoefficient));
+  line-height: calc(20px * var(--sizeCoefficient));
   text-align: center;
   color: #ffffff;
   cursor: pointer;

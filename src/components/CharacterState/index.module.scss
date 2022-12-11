@@ -1,9 +1,12 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding: 31px 27px 13px 14px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: calc(31px * var(--sizeCoefficient)) calc(27px * var(--sizeCoefficient)) calc(13px * var(--sizeCoefficient))
+    calc(14px * var(--sizeCoefficient));
   background: #002882;
-  border-radius: 20px;
+  border-radius: calc(20px * var(--sizeCoefficient));
   transition: all 0.2s;
 
   &:not(.active) {
@@ -31,14 +34,14 @@
 }
 
 .skills {
-  margin-top: 30px;
+  margin-top: calc(30px * var(--sizeCoefficient));
 }
 
 .stepsTitle,
 .skillsTitle {
   font-weight: 600;
-  font-size: 13px;
-  line-height: 11px;
+  font-size: calc(13px * var(--sizeCoefficient));
+  line-height: calc(11px * var(--sizeCoefficient));
   color: #ffffff;
 }
 
@@ -49,18 +52,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 12px;
-  width: 42px;
-  height: 42px;
+  margin-left: calc(12px * var(--sizeCoefficient));
+  width: calc(42px * var(--sizeCoefficient));
+  height: calc(42px * var(--sizeCoefficient));
   background: #ffffff;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--sizeCoefficient));
 }
 
 .stepsValue,
 .skillsValue {
   font-weight: 600;
-  font-size: 25px;
-  line-height: 11px;
+  font-size: calc(25px * var(--sizeCoefficient));
+  line-height: calc(11px * var(--sizeCoefficient));
   color: #002882;
   text-align: center;
 }
@@ -68,10 +71,10 @@
 .stepsIncrementButton,
 .skillsIncrementButton {
   position: absolute;
-  width: 34px;
-  height: 34px;
-  top: 8px;
-  right: 8px;
+  width: calc(34px * var(--sizeCoefficient));
+  height: calc(34px * var(--sizeCoefficient));
+  top: calc(8px * var(--sizeCoefficient));
+  right: calc(8px * var(--sizeCoefficient));
   transform: translate(100%, -100%);
   cursor: pointer;
   transition: all 0.2s;

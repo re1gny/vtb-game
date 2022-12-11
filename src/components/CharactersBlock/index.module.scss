@@ -1,6 +1,5 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 322px 234px;
-  gap: 10px 12px;
-  overflow: auto;
+  grid-template-columns: calc(322px * var(--sizeCoefficient)) calc(234px * var(--sizeCoefficient));
+  gap: calc(10px * var(--sizeCoefficient)) calc(12px * var(--sizeCoefficient));
 }

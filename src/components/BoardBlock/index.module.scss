@@ -10,13 +10,13 @@
 }
 
 .title {
-  padding: 15px 40px;
+  padding: calc(15px * var(--sizeCoefficient)) calc(40px * var(--sizeCoefficient));
   background: #FFFFFF;
   box-shadow: 0 1px 20px #82D9FF;
-  border-radius: 64px;
+  border-radius: calc(64px * var(--sizeCoefficient));
   font-weight: 600;
-  font-size: 25px;
-  line-height: 30px;
+  font-size: calc(25px * var(--sizeCoefficient));
+  line-height: calc(30px * var(--sizeCoefficient));
   text-align: center;
   text-transform: uppercase;
   color: #0094FF;
@@ -24,5 +24,5 @@
 
 .board {
   flex-grow: 1;
-  margin-top: 44px;
+  margin-top: calc(44px * var(--sizeCoefficient));
 }

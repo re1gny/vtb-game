@@ -2,43 +2,43 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 150px 48px;
+  padding: calc(150px * var(--sizeCoefficient)) calc(48px * var(--sizeCoefficient));
   background: #002882;
-  border-radius: 30px;
-  width: 1000px;
+  border-radius: calc(30px * var(--sizeCoefficient));
+  width: calc(1000px * var(--sizeCoefficient));
 }
 
 .text {
   font-weight: 700;
-  font-size: 50px;
-  line-height: 64px;
+  font-size: calc(50px * var(--sizeCoefficient));
+  line-height: calc(64px * var(--sizeCoefficient));
   text-align: center;
   color: #ffffff;
 }
 
 .smallStar {
-  width: 286px;
-  height: 286px;
+  width: calc(286px * var(--sizeCoefficient));
+  height: calc(286px * var(--sizeCoefficient));
   position: absolute;
-  right: -130px;
-  top: 30px;
+  right: calc(-130px * var(--sizeCoefficient));
+  top: calc(30px * var(--sizeCoefficient));
   z-index: -1;
 }
 
 .mediumStar {
   position: absolute;
-  width: 365px;
-  height: 365px;
-  right: -144px;
-  top: 198px;
+  width: calc(365px * var(--sizeCoefficient));
+  height: calc(365px * var(--sizeCoefficient));
+  right: calc(-144px * var(--sizeCoefficient));
+  top: calc(198px * var(--sizeCoefficient));
   z-index: -1;
 }
 
 .superStar {
   position: absolute;
-  width: 499px;
-  height: 499px;
-  top: -88px;
-  left: -176px;
+  width: calc(499px * var(--sizeCoefficient));
+  height: calc(499px * var(--sizeCoefficient));
+  top: calc(-88px * var(--sizeCoefficient));
+  left: calc(-176px * var(--sizeCoefficient));
   z-index: -1;
 }
