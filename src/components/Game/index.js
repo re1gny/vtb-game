@@ -65,18 +65,18 @@ export function Game(props) {
     setChanceCard(card);
   }
 
-  function handlePassedCharacterSteps(previousFieldId, nextFieldId, nextCharactersState) {
-    const passedFields = getFieldsTillFieldId(previousFieldId, nextFieldId, board);
+  function handlePassedCharacterSteps(initialFieldId, nextFieldId, nextCharactersState) {
+    const passedFields = getFieldsTillFieldId(initialFieldId, nextFieldId, board) || [];
 
-    const lastPassedField = passedFields?.[passedFields?.length - 1];
+    const lastPassedField = passedFields[passedFields.length - 1];
 
-    if (lastPassedField?.id === getFieldByPosition(board?.path?.[board?.path?.length - 1], board)) {
+    if (lastPassedField && lastPassedField.id === getFieldByPosition(board.path[board.path.length - 1], board)) {
       handleCompleteGame(nextCharactersState);
       return;
     }
 
-    if (passedFields?.some(({ type }) => type === 'promotion')) {
-      setCurrentPromotion([...(passedFields || [])].reverse().find(({ type }) => type === 'promotion'));
+    if (passedFields.some(({ type }) => type === 'promotion')) {
+      setCurrentPromotion([...passedFields].reverse().find(({ type }) => type === 'promotion'));
     }
 
     if (lastPassedField?.type === 'chance') {
@@ -84,9 +84,9 @@ export function Game(props) {
     }
   }
 
-  function handleCharacterStep(initialCharactersState, characterId, step, steps) {
+  function handleCharacterStep(characterId, step, steps, initialFieldId) {
     setCharactersState((prev) => {
-      const nextField = getNextFieldByFieldId(prev[characterId].fieldId, board);
+      const nextField = getNextFieldByFieldId(prev[characterId]?.fieldId, board);
 
       if (!nextField) {
         return prev;
@@ -98,7 +98,7 @@ export function Game(props) {
       };
 
       if (step === steps) {
-        handlePassedCharacterSteps(initialCharactersState?.[characterId]?.fieldId, nextField.id, nextCharactersState);
+        handlePassedCharacterSteps(initialFieldId, nextField.id, nextCharactersState);
       }
 
       return nextCharactersState;
@@ -110,8 +110,10 @@ export function Game(props) {
       return;
     }
 
+    const initialFieldId = charactersState[characterId]?.fieldId;
+
     for (let step = 1; step <= steps; step++) {
-      setTimeout(() => handleCharacterStep(charactersState, characterId, step, steps), step * 100);
+      setTimeout(() => handleCharacterStep(characterId, step, steps, initialFieldId), step * 100);
     }
   }
 
