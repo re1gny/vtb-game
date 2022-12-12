@@ -20,19 +20,19 @@
   flex-grow: 1;
   background: #002982;
   border-radius: calc(38px * var(--sizeCoefficient));
-  padding: calc(54px * var(--sizeCoefficient)) calc(64px * var(--sizeCoefficient)) calc(40px * var(--sizeCoefficient));
+  padding: calc(40px * var(--sizeCoefficient)) calc(64px * var(--sizeCoefficient)) calc(48px * var(--sizeCoefficient));
   box-sizing: border-box;
 }
 
 .name {
   flex-shrink: 0;
-  width: calc(197px * var(--sizeCoefficient));
-  height: calc(75px * var(--sizeCoefficient));
+  width: calc(206px * var(--sizeCoefficient));
+  height: calc(84px * var(--sizeCoefficient));
 }
 
 .title {
   flex-shrink: 0;
-  margin-top: calc(20px * var(--sizeCoefficient));
+  margin-top: calc(25px * var(--sizeCoefficient));
   font-weight: 400;
   font-size: calc(25px * var(--sizeCoefficient));
   line-height: calc(32px * var(--sizeCoefficient));
