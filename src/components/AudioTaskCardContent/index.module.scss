@@ -1,0 +1,16 @@
+.playerWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.player {
+  flex-grow: 1;
+}
+
+.audioTextIcon {
+  flex-shrink: 0;
+  width: calc(36px * var(--sizeCoefficient));
+  height: calc(29px * var(--sizeCoefficient));
+  margin-left: calc(20px * var(--sizeCoefficient));
+  cursor: pointer;
+}

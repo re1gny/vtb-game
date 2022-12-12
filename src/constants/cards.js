@@ -3,6 +3,7 @@ import { ReactComponent as AnswerSign2 } from '../assets/icons/answerSign2.svg';
 import { ReactComponent as AnswerSign3 } from '../assets/icons/answerSign3.svg';
 import { ReactComponent as AnswerSign4 } from '../assets/icons/answerSign4.svg';
 import TaskImage3 from '../assets/images/taskCardRandomizerBackground.png';
+import TaskAudio7 from '../assets/audio/taskAudio7.mp3';
 
 export const CHANCE_CARDS = [
   {
@@ -99,5 +100,16 @@ export const TASK_CARDS = [
     subDescription: 'Если выполнили задание:\n' + 'идите вперед на 4 шага',
     timer: 30,
     answer: 'Ответ: ПАО Публичное акционерное общество',
+  },
+  {
+    id: 7,
+    number: 7,
+    type: 'audio',
+    audio: TaskAudio7,
+    description: 'Угадайте звук устройства, которое используется в банке. У вас есть две попытки.',
+    fallbackDescription:
+      'Угадайте устройство, которое используется в банке, по описанию. Внешнее, периферийное устройство компьютера, предназначенное для вывода текстовой или графической информации, хранящейся в компьютере, на твёрдый физический носитель.',
+    subDescription: 'Если выполнили задание:\n' + 'идите вперед на 4 шага',
+    answer: 'Ответ: Принтер',
   },
 ];

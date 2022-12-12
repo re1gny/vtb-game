@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(20px * var(--sizeCoefficient)) calc(35px * var(--sizeCoefficient));
+  background: #002882;
+  border-radius: calc(20px * var(--sizeCoefficient));
+}
+
+.playIcon {
+  flex-shrink: 0;
+  width: calc(32px * var(--sizeCoefficient));
+  height: calc(37px * var(--sizeCoefficient));
+  cursor: pointer;
+}
+
+.track {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  margin-left: calc(18px * var(--sizeCoefficient));
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #002882;
+    opacity: 0.5;
+    transition: width 0.2s;
+  }
+}
+
+.trackIcon {
+  width: 100%;
+}
