@@ -30,6 +30,7 @@ export const SKILL_CARDS = [
 
 export const TASK_CARDS = [
   {
+    id: 1,
     number: 1,
     type: 'answers',
     answers: [
@@ -46,6 +47,7 @@ export const TASK_CARDS = [
     answer: 'Ответ: ПАО Публичное акционерное общество',
   },
   {
+    id: 2,
     number: 2,
     type: 'list',
     items: ['Паспорт, СНИЛС и ИНН', 'Усы, лапы и хвост', 'Паспорт, СНИЛС, свидетельство о рождении', 'Паспорт, ИНН'],
@@ -56,6 +58,7 @@ export const TASK_CARDS = [
     answer: 'Ответ: ПАО Публичное акционерное общество',
   },
   {
+    id: 3,
     number: 3,
     type: 'image',
     image: TaskImage3,
@@ -66,6 +69,7 @@ export const TASK_CARDS = [
     answer: 'Ответ: ПАО Публичное акционерное общество',
   },
   {
+    id: 4,
     number: 4,
     type: 'list',
     items: ['Принтер'],
@@ -76,6 +80,7 @@ export const TASK_CARDS = [
     answer: 'Ответ: ПАО Публичное акционерное общество',
   },
   {
+    id: 5,
     number: 5,
     type: 'list',
     items: ['А мы рубль девальвировали, девальвировали, да недодевальвировали…'],
@@ -85,6 +90,7 @@ export const TASK_CARDS = [
     answer: 'Ответ: ПАО Публичное акционерное общество',
   },
   {
+    id: 6,
     number: 6,
     type: 'list',
     items: ['Банк', 'ВТБ', 'Терминал', 'Карта', 'Валюта'],

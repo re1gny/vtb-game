@@ -34,6 +34,9 @@ export function Game(props) {
   const [skillCard, setSkillCard] = useState(null);
   const [taskCard, setTaskCard] = useState(null);
   const [winners, setWinners] = useState(null);
+  const [leftChanceCards, setLeftChanceCards] = useState(CHANCE_CARDS);
+  const [leftTaskCards, setLeftTaskCards] = useState(TASK_CARDS);
+  const [leftSkillCards, setLeftSkillCards] = useState(SKILL_CARDS);
 
   function handleCompleteGame(charactersState) {
     setGameCompleted(true);
@@ -53,18 +56,30 @@ export function Game(props) {
   }
 
   function handleRandomizeSkill() {
-    const card = getRandomCard(SKILL_CARDS);
-    setSkillCard(card);
+    const card = getRandomCard(leftSkillCards);
+
+    if (card) {
+      setLeftSkillCards((prev) => prev.filter(({ id }) => id !== card.id));
+      setSkillCard(card);
+    }
   }
 
   function handleRandomizeTask() {
-    const card = getRandomCard(TASK_CARDS);
-    setTaskCard(card);
+    const card = getRandomCard(leftTaskCards);
+
+    if (card) {
+      setLeftTaskCards((prev) => prev.filter(({ id }) => id !== card.id));
+      setTaskCard(card);
+    }
   }
 
   function handleRandomizeChance() {
-    const card = getRandomCard(CHANCE_CARDS);
-    setChanceCard(card);
+    const card = getRandomCard(leftChanceCards);
+
+    if (card) {
+      setLeftChanceCards((prev) => prev.filter(({ id }) => id !== card.id));
+      setChanceCard(card);
+    }
   }
 
   function handlePassedCharacterSteps(initialFieldId, nextFieldId, nextCharactersState) {
@@ -148,6 +163,8 @@ export function Game(props) {
       <ActionsBlock
         className={styles.actions}
         gameCompleted={gameCompleted}
+        taskCards={leftTaskCards}
+        skillCards={leftSkillCards}
         onCompleteGame={() => handleCompleteGame(charactersState)}
         onRandomizeSkill={handleRandomizeSkill}
         onRandomizeTask={handleRandomizeTask}
