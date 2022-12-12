@@ -62,13 +62,12 @@ function getCharacterFigureStyles(
 
   return {
     position: 'absolute',
-    top: '0',
-    left: '0',
-    transform: `translate(${offsetLeft}px, ${offsetTop}px)`,
+    top: `${offsetTop}px`,
+    left: `${offsetLeft}px`,
     width: `${characterFigureSize}px`,
     height: `${characterFigureSize}px`,
-    transition: `transform ${stepDuration}ms`,
-    willChange: 'transform',
+    transition: `top ${stepDuration}ms, left ${stepDuration}ms`,
+    willChange: 'top, left',
   };
 }
 
