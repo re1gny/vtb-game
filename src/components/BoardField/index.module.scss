@@ -6,11 +6,6 @@
   box-sizing: border-box;
   border-radius: 12%;
 
-  &.placeholder {
-    background: #75d2fb;
-    opacity: 0.2;
-  }
-
   &.default,
   &.promotion,
   &.chance {
@@ -36,7 +31,7 @@
     }
   }
 
-  &.overlay {
+  &.backdrop {
     background: rgba(130, 217, 255, 0.9);
     filter: blur(12px);
   }

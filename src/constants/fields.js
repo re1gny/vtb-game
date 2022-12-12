@@ -13,12 +13,12 @@ import { ReactComponent as RetailDepartmentPromotion5Icon } from '../assets/icon
 export const RETAIL_DEPARTMENT_FIELDS = [
   {
     id: 1,
-    type: 'placeholder',
+    type: 'promotion',
+    logo: RetailDepartmentPromotion1Icon,
   },
   {
     id: 2,
-    type: 'promotion',
-    logo: RetailDepartmentPromotion1Icon,
+    type: 'default',
   },
   {
     id: 3,
@@ -229,12 +229,12 @@ export const RETAIL_DEPARTMENT_FIELDS = [
 export const CONTACT_CENTER_FIELDS = [
   {
     id: 1,
-    type: 'placeholder',
+    type: 'promotion',
+    logo: ContactCenterPromotion1Icon,
   },
   {
     id: 2,
-    type: 'promotion',
-    logo: ContactCenterPromotion1Icon,
+    type: 'default',
   },
   {
     id: 3,
