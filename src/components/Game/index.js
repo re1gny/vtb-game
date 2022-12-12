@@ -15,6 +15,7 @@ import { getWinners } from '../../utils/getWinners';
 import { ChanceCardModal } from '../ChanceCardModal';
 import { getRandomCard } from '../../utils/getRandomCard';
 import { CHANCE_CARDS, SKILL_CARDS, TASK_CARDS } from '../../constants/cards';
+import { STEP_DURATION } from '../../constants/durations';
 import { SkillCardModal } from '../SkillCardModal';
 import { TaskCardModal } from '../TaskCardModal';
 import { getFieldsBetweenFieldsIds } from '../../utils/getFieldsBetweenFieldsIds';
@@ -103,7 +104,7 @@ export function Game(props) {
       };
 
       if (step === steps) {
-        handlePassedCharacterSteps(initialFieldId, nextField.id, nextCharactersState);
+        setTimeout(() => handlePassedCharacterSteps(initialFieldId, nextField.id, nextCharactersState), STEP_DURATION);
       }
 
       return nextCharactersState;
@@ -119,7 +120,7 @@ export function Game(props) {
     const normalizedSteps = normalizeCharacterSteps(initialFieldId, steps, board);
 
     for (let step = 1; step <= normalizedSteps; step++) {
-      setTimeout(() => handleCharacterStep(characterId, step, normalizedSteps, initialFieldId), step * 100);
+      setTimeout(() => handleCharacterStep(characterId, step, normalizedSteps, initialFieldId), step * STEP_DURATION);
     }
   }
 
@@ -142,6 +143,7 @@ export function Game(props) {
         board={board}
         characters={CHARACTERS}
         charactersState={charactersState}
+        stepDuration={STEP_DURATION}
       />
       <ActionsBlock
         className={styles.actions}

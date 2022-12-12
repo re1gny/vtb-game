@@ -20,7 +20,14 @@ function getFieldStyles(size, position, horizontalOffset) {
   };
 }
 
-function getCharacterFigureStyles(characterId, fieldSize, characterFigureSize, position, horizontalOffset) {
+function getCharacterFigureStyles(
+  characterId,
+  fieldSize,
+  characterFigureSize,
+  position,
+  horizontalOffset,
+  stepDuration
+) {
   const FIGURE_SIZE_TO_SLOT_POSITION_COEFFICIENT = characterFigureSize / DEFAULT_CHARACTER_FIGURE_SIZE;
 
   const DEFAULT_SLOTS = {
@@ -50,13 +57,18 @@ function getCharacterFigureStyles(characterId, fieldSize, characterFigureSize, p
     },
   };
 
+  const offsetTop = fieldSize * position[0] + DEFAULT_SLOTS[characterId].top;
+  const offsetLeft = fieldSize * position[1] + DEFAULT_SLOTS[characterId].left + horizontalOffset;
+
   return {
     position: 'absolute',
-    top: `${fieldSize * position[0] + DEFAULT_SLOTS[characterId].top}px`,
-    left: `${fieldSize * position[1] + DEFAULT_SLOTS[characterId].left + horizontalOffset}px`,
+    top: '0',
+    left: '0',
+    transform: `translate(${offsetLeft}px, ${offsetTop}px)`,
     width: `${characterFigureSize}px`,
     height: `${characterFigureSize}px`,
-    willChange: 'left, top',
+    transition: `transform ${stepDuration}ms`,
+    willChange: 'transform',
   };
 }
 
@@ -81,7 +93,7 @@ function calculateLayoutOptions(boardElement, board) {
 }
 
 export function Board(props) {
-  const { className, board, characters, charactersState } = props;
+  const { className, board, characters, charactersState, stepDuration } = props;
 
   const boardRef = useRef();
 
@@ -139,7 +151,8 @@ export function Board(props) {
             fieldSize,
             characterFigureSize,
             getPositionByFieldId(charactersState[character.id].fieldId, board),
-            horizontalOffset
+            horizontalOffset,
+            stepDuration
           )}
         />
       ))}
