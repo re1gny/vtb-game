@@ -1,0 +1,119 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.number {
+  font-weight: 700;
+  font-size: calc(35px * var(--sizeCoefficient));
+  line-height: calc(45px * var(--sizeCoefficient));
+  text-transform: uppercase;
+  color: #002882;
+  filter: blur(0.138283px);
+
+  & + .title,
+  & + .description,
+  & + .children,
+  & + .subDescription,
+  & + .timer,
+  & + .answer {
+    margin-top: calc(30px * var(--sizeCoefficient));
+  }
+}
+
+.title {
+  font-weight: 600;
+  font-size: calc(25px * var(--sizeCoefficient));
+  line-height: calc(32px * var(--sizeCoefficient));
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: pre-wrap;
+  text-align: center;
+  color: #002882;
+
+  & + .description,
+  & + .children,
+  & + .subDescription,
+  & + .timer,
+  & + .answer {
+    margin-top: calc(30px * var(--sizeCoefficient));
+  }
+}
+
+.description {
+  font-weight: 700;
+  font-size: calc(32px * var(--sizeCoefficient));
+  line-height: calc(41px * var(--sizeCoefficient));
+  text-align: center;
+  white-space: pre-wrap;
+  color: #002882;
+
+  & + .children,
+  & + .subDescription,
+  & + .timer,
+  & + .answer {
+    margin-top: calc(30px * var(--sizeCoefficient));
+  }
+}
+
+.children {
+  width: 100%;
+
+  & + .subDescription,
+  & + .timer,
+  & + .answer {
+    margin-top: calc(30px * var(--sizeCoefficient));
+  }
+}
+
+.subDescription {
+  font-weight: 600;
+  font-size: calc(23px * var(--sizeCoefficient));
+  line-height: calc(29px * var(--sizeCoefficient));
+  text-align: center;
+  white-space: pre-wrap;
+  color: #002882;
+
+  & + .timer,
+  & + .answer {
+    margin-top: calc(30px * var(--sizeCoefficient));
+  }
+}
+
+.timer {
+  & + .answer {
+    margin-top: calc(30px * var(--sizeCoefficient));
+  }
+}
+
+.answer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.answerText {
+  font-weight: 700;
+  font-size: calc(32px * var(--sizeCoefficient));
+  line-height: calc(41px * var(--sizeCoefficient));
+  text-align: center;
+  white-space: pre-wrap;
+  color: #002882;
+}
+
+.answerButton {
+  outline: none;
+  border: none;
+  padding: calc(12px * var(--sizeCoefficient)) calc(60px * var(--sizeCoefficient));
+  box-sizing: border-box;
+  background: #002882;
+  border-radius: calc(15px * var(--sizeCoefficient));
+  font-weight: 600;
+  font-size: calc(30px * var(--sizeCoefficient));
+  line-height: calc(42px * var(--sizeCoefficient));
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  cursor: pointer;
+}

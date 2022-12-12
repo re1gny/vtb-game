@@ -1,0 +1,9 @@
+.image {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+  background: transparent;
+  border: 2px solid #002882;
+  border-radius: calc(20px * var(--sizeCoefficient));
+  box-sizing: border-box;
+}

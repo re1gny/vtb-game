@@ -1,3 +1,9 @@
+import { ReactComponent as AnswerSign1 } from '../assets/icons/answerSign1.svg';
+import { ReactComponent as AnswerSign2 } from '../assets/icons/answerSign2.svg';
+import { ReactComponent as AnswerSign3 } from '../assets/icons/answerSign3.svg';
+import { ReactComponent as AnswerSign4 } from '../assets/icons/answerSign4.svg';
+import TaskImage3 from '../assets/images/taskCardRandomizerBackground.png';
+
 export const CHANCE_CARDS = [
   {
     id: 1,
@@ -25,10 +31,67 @@ export const SKILL_CARDS = [
 export const TASK_CARDS = [
   {
     number: 1,
-    type: 'default',
-    description:
-      'Срочное собрание наставников!\n' +
-      'Все капитаны команд должны положить руку в середину стола (друг на друга) кто оказался последним — опоздал на собрание, его команда не получила важные вводные и стоит на месте. Остальные продвигаются согласно тому, как успели на собрание\n' +
-      '1 - 5; 2 - 4; 3 - 3; 4 - 2; 5 - 1; 6 - 0',
+    type: 'answers',
+    answers: [
+      { text: 'Паспорт, СНИЛС и ИНН', sign: AnswerSign1, correct: true },
+      { text: 'Усы, лапы и хвост', sign: AnswerSign2, correct: false },
+      { text: 'Паспорт, СНИЛС, свидетельство о рождении', sign: AnswerSign3, correct: false },
+      { text: 'Паспорт, ИНН', sign: AnswerSign4, correct: false },
+    ],
+    columns: 2,
+    title: 'Навык: Тайм-менеджмент',
+    description: 'Назовите 3 предмета, без которых нельзя обойтись в офисе',
+    subDescription: 'Если выполнили задание:\n' + 'идите вперед на 4 шага',
+    timer: 30,
+    answer: 'Ответ: ПАО Публичное акционерное общество',
+  },
+  {
+    number: 2,
+    type: 'list',
+    items: ['Паспорт, СНИЛС и ИНН', 'Усы, лапы и хвост', 'Паспорт, СНИЛС, свидетельство о рождении', 'Паспорт, ИНН'],
+    title: 'Навык: Тайм-менеджмент',
+    description: 'Назовите 3 предмета, без которых нельзя обойтись в офисе',
+    subDescription: 'Если выполнили задание:\n' + 'идите вперед на 4 шага',
+    timer: 30,
+    answer: 'Ответ: ПАО Публичное акционерное общество',
+  },
+  {
+    number: 3,
+    type: 'image',
+    image: TaskImage3,
+    title: 'Навык: Тайм-менеджмент',
+    description: 'Назовите 3 предмета, без которых нельзя обойтись в офисе',
+    subDescription: 'Если выполнили задание:\n' + 'идите вперед на 4 шага',
+    timer: 30,
+    answer: 'Ответ: ПАО Публичное акционерное общество',
+  },
+  {
+    number: 4,
+    type: 'list',
+    items: ['Принтер'],
+    columns: 2,
+    description: 'Назовите 3 предмета, без которых нельзя обойтись в офисе',
+    subDescription: 'Если выполнили задание:\n' + 'идите вперед на 4 шага',
+    timer: 30,
+    answer: 'Ответ: ПАО Публичное акционерное общество',
+  },
+  {
+    number: 5,
+    type: 'list',
+    items: ['А мы рубль девальвировали, девальвировали, да недодевальвировали…'],
+    description: 'Назовите 3 предмета, без которых нельзя обойтись в офисе',
+    subDescription: 'Если выполнили задание:\n' + 'идите вперед на 4 шага',
+    timer: 30,
+    answer: 'Ответ: ПАО Публичное акционерное общество',
+  },
+  {
+    number: 6,
+    type: 'list',
+    items: ['Банк', 'ВТБ', 'Терминал', 'Карта', 'Валюта'],
+    columns: 2,
+    description: 'Назовите 3 предмета, без которых нельзя обойтись в офисе',
+    subDescription: 'Если выполнили задание:\n' + 'идите вперед на 4 шага',
+    timer: 30,
+    answer: 'Ответ: ПАО Публичное акционерное общество',
   },
 ];

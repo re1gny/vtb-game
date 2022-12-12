@@ -1,11 +1,9 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding: calc(50px * var(--sizeCoefficient));
   border-radius: calc(30px * var(--sizeCoefficient));
   width: calc(806px * var(--sizeCoefficient));
-  background: #ffffff;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .header {
@@ -13,22 +11,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #002882;
+  padding: calc(22px * var(--sizeCoefficient)) calc(100px * var(--sizeCoefficient));
 }
 
 .name {
-  font-weight: 700;
-  font-size: calc(38px * var(--sizeCoefficient));
-  line-height: calc(48px * var(--sizeCoefficient));
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #002882;
-  filter: blur(0.138283px);
-  text-align: center;
+  width: calc(193px * var(--sizeCoefficient));
+  height: calc(48px * var(--sizeCoefficient));
 }
 
 .content {
   flex-grow: 1;
-  margin-top: calc(50px * var(--sizeCoefficient));
-  display: flex;
-  flex-direction: column;
+  padding: calc(30px * var(--sizeCoefficient)) calc(50px * var(--sizeCoefficient)) calc(50px * var(--sizeCoefficient));
+  background: #ffffff;
+  overflow: auto;
 }
