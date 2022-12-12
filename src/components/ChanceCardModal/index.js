@@ -1,5 +1,5 @@
 import React from 'react';
-import ChanceAndSkillCardsBackground from '../../assets/icons/chanceAndSkillCardsBackground.svg';
+import ChanceCardBackground from '../../assets/icons/chanceCardBackground.svg';
 import { ReactComponent as ChanceCardName } from '../../assets/icons/chanceCardName.svg';
 import { Modal } from '../Modal';
 import styles from './index.module.scss';
@@ -10,7 +10,7 @@ export function ChanceCardModal(props) {
   return (
     <Modal
       className={styles.wrapper}
-      style={{ backgroundImage: `url(${ChanceAndSkillCardsBackground})` }}
+      style={{ backgroundImage: `url(${ChanceCardBackground})` }}
       opened={opened}
       onClose={onClose}
     >
