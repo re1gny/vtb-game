@@ -10,6 +10,7 @@ import { GameLayout } from '../GameLayout';
 import { CharacterModal } from '../CharacterModal';
 import { PromotionModal } from '../PromotionModal';
 import { WinnerCongratulationsModal } from '../WinnerCongratulationsModal';
+import { NotEnoughSkillsForPromotionModal } from '../NotEnoughSkillsForPromotionModal';
 import { getWinners } from '../../utils/getWinners';
 import { ChanceCardModal } from '../ChanceCardModal';
 import { getRandomCard } from '../../utils/getRandomCard';
@@ -29,6 +30,7 @@ export function Game(props) {
   const [charactersStateRef, setCharactersStateRef] = useCharactersState(board);
   const [openedCharacter, setOpenedCharacter] = useState(null);
   const [currentPromotion, setCurrentPromotion] = useState(null);
+  const [currentPromotionWithNotEnoughSkills, setCurrentPromotionWithNotEnoughSkills] = useState(null);
   const [chanceCard, setChanceCard] = useState(null);
   const [skillCard, setSkillCard] = useState(null);
   const [taskCard, setTaskCard] = useState(null);
@@ -113,8 +115,19 @@ export function Game(props) {
     }
   }
 
-  function validateCharacterStep(nextField) {
-    return !!nextField;
+  function validateCharacterStep(characterId, nextField, step) {
+    if (!nextField) {
+      return false;
+    }
+
+    const currentCharacterSkills = charactersStateRef.current[characterId]?.skillsAmount;
+
+    if (nextField.type === 'promotion' && currentCharacterSkills < nextField.skillsRequired) {
+      setTimeout(() => setCurrentPromotionWithNotEnoughSkills(nextField), step > 1 ? STEP_DURATION : 0);
+      return false;
+    }
+
+    return true;
   }
 
   async function handleCharacterMove(characterId, steps) {
@@ -124,7 +137,7 @@ export function Game(props) {
       const prev = charactersStateRef.current;
       const nextField = getNextFieldByFieldId(prev[characterId]?.fieldId, board);
 
-      if (validateCharacterStep(nextField)) {
+      if (validateCharacterStep(characterId, nextField, step)) {
         passedFields.push(nextField);
       } else {
         break;
@@ -140,7 +153,9 @@ export function Game(props) {
       );
     }
 
-    setTimeout(() => handlePassedCharacterSteps(passedFields), STEP_DURATION);
+    if (passedFields.length) {
+      setTimeout(() => handlePassedCharacterSteps(passedFields), STEP_DURATION);
+    }
   }
 
   return (
@@ -184,6 +199,11 @@ export function Game(props) {
         characterState={charactersStateRef.current[openedCharacter?.id]}
         gameCompleted={gameCompleted}
         onClose={() => setOpenedCharacter(null)}
+      />
+      <NotEnoughSkillsForPromotionModal
+        opened={!!currentPromotionWithNotEnoughSkills}
+        promotion={currentPromotionWithNotEnoughSkills}
+        onClose={() => setCurrentPromotionWithNotEnoughSkills(null)}
       />
     </GameLayout>
   );
