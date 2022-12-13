@@ -6,7 +6,7 @@ import styles from './index.module.scss';
 const ON_MOVE_DELAY = 1500;
 
 export function CharacterState(props) {
-  const { className, characterState, gameCompleted, onActivate, onSkillsAmountChange, onMove, onOpen } = props;
+  const { className, characterState, gameCompleted, onActivate, onSkillsAmountChange, onMove } = props;
   const { skillsAmount, active } = characterState;
   const [steps, setSteps] = useState(0);
 
@@ -38,7 +38,6 @@ export function CharacterState(props) {
   function handleActivate() {
     if (!active && !gameCompleted) {
       onActivate?.();
-      onOpen?.();
     }
   }
 

@@ -1,0 +1,45 @@
+.answers {
+  display: flex;
+  flex-direction: column;
+
+  &.answerShown {
+    .answer:not(.correct) {
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+  }
+
+  &:not(.answerShown) {
+    .answer {
+      cursor: pointer;
+    }
+  }
+}
+
+.answer {
+  display: flex;
+  align-items: center;
+  padding: calc(14px * var(--sizeCoefficient)) calc(25px * var(--sizeCoefficient));
+  background: #002882;
+  border-radius: calc(20px * var(--sizeCoefficient));
+
+  & + & {
+    margin-top: calc(20px * var(--sizeCoefficient));
+  }
+}
+
+.answerSign {
+  width: calc(60px * var(--sizeCoefficient));
+  height: calc(70px * var(--sizeCoefficient));
+
+  & + .answerText {
+    margin-left: calc(16px * var(--sizeCoefficient));
+  }
+}
+
+.answerText {
+  font-weight: 600;
+  font-size: calc(23px * var(--sizeCoefficient));
+  line-height: calc(29px * var(--sizeCoefficient));
+  color: #FFFFFF;
+}

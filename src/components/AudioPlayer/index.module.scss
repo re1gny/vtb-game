@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(20px * var(--sizeCoefficient)) calc(35px * var(--sizeCoefficient));
+  background: #002882;
+  border-radius: calc(20px * var(--sizeCoefficient));
+}
+
+.playPauseIconWrapper {
+  flex-shrink: 0;
+  position: relative;
+  width: calc(32px * var(--sizeCoefficient));
+  height: calc(37px * var(--sizeCoefficient));
+}
+
+.playIcon,
+.pauseIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.track {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  margin-left: calc(18px * var(--sizeCoefficient));
+}
+
+.trackOverlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100% - var(--percentComplete));
+  height: 100%;
+  background: #002882;
+  opacity: 0.5;
+}
+
+.trackIcon {
+  width: 100%;
+}

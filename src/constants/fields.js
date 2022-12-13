@@ -9,16 +9,24 @@ import { ReactComponent as RetailDepartmentPromotion2Icon } from '../assets/icon
 import { ReactComponent as RetailDepartmentPromotion3Icon } from '../assets/icons/retailDepartmentPromotion3.svg';
 import { ReactComponent as RetailDepartmentPromotion4Icon } from '../assets/icons/retailDepartmentPromotion4.svg';
 import { ReactComponent as RetailDepartmentPromotion5Icon } from '../assets/icons/retailDepartmentPromotion5.svg';
+import { ReactComponent as NotEnoughSkillsForPromotion1Icon } from '../assets/icons/notEnoughSkillsForPromotion1.svg';
+import { ReactComponent as NotEnoughSkillsForPromotion2Icon } from '../assets/icons/notEnoughSkillsForPromotion2.svg';
+import { ReactComponent as NotEnoughSkillsForPromotion3Icon } from '../assets/icons/notEnoughSkillsForPromotion3.svg';
+import { ReactComponent as NotEnoughSkillsForPromotion4Icon } from '../assets/icons/notEnoughSkillsForPromotion4.svg';
+import { ReactComponent as NotEnoughSkillsForPromotion5Icon } from '../assets/icons/notEnoughSkillsForPromotion5.svg';
 
 export const RETAIL_DEPARTMENT_FIELDS = [
   {
     id: 1,
-    type: 'placeholder',
+    type: 'promotion',
+    position: 'Стажер-юниор',
+    skillsRequired: 0,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion1Icon,
+    logo: RetailDepartmentPromotion1Icon,
   },
   {
     id: 2,
-    type: 'promotion',
-    logo: RetailDepartmentPromotion1Icon,
+    type: 'default',
   },
   {
     id: 3,
@@ -53,6 +61,9 @@ export const RETAIL_DEPARTMENT_FIELDS = [
   {
     id: 10,
     type: 'promotion',
+    position: 'Клиентский менеджер',
+    skillsRequired: 2,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion2Icon,
     logo: RetailDepartmentPromotion2Icon,
   },
   {
@@ -101,6 +112,9 @@ export const RETAIL_DEPARTMENT_FIELDS = [
   {
     id: 21,
     type: 'promotion',
+    position: 'Персональный менеджер',
+    skillsRequired: 3,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion3Icon,
     logo: RetailDepartmentPromotion3Icon,
   },
   {
@@ -157,6 +171,9 @@ export const RETAIL_DEPARTMENT_FIELDS = [
   {
     id: 34,
     type: 'promotion',
+    position: 'Руководитель группы',
+    skillsRequired: 5,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion4Icon,
     logo: RetailDepartmentPromotion4Icon,
   },
   {
@@ -222,6 +239,9 @@ export const RETAIL_DEPARTMENT_FIELDS = [
   {
     id: 49,
     type: 'promotion',
+    position: 'Начальник отдела',
+    skillsRequired: 7,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion5Icon,
     logo: RetailDepartmentPromotion5Icon,
   },
 ];
@@ -229,12 +249,15 @@ export const RETAIL_DEPARTMENT_FIELDS = [
 export const CONTACT_CENTER_FIELDS = [
   {
     id: 1,
-    type: 'placeholder',
+    type: 'promotion',
+    position: 'Специалист',
+    skillsRequired: 0,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion1Icon,
+    logo: ContactCenterPromotion1Icon,
   },
   {
     id: 2,
-    type: 'promotion',
-    logo: ContactCenterPromotion1Icon,
+    type: 'default',
   },
   {
     id: 3,
@@ -269,6 +292,9 @@ export const CONTACT_CENTER_FIELDS = [
   {
     id: 10,
     type: 'promotion',
+    position: 'Старший специалист',
+    skillsRequired: 2,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion2Icon,
     logo: ContactCenterPromotion2Icon,
   },
   {
@@ -317,6 +343,9 @@ export const CONTACT_CENTER_FIELDS = [
   {
     id: 21,
     type: 'promotion',
+    position: 'Персональный менеджер',
+    skillsRequired: 3,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion3Icon,
     logo: ContactCenterPromotion3Icon,
   },
   {
@@ -373,6 +402,9 @@ export const CONTACT_CENTER_FIELDS = [
   {
     id: 34,
     type: 'promotion',
+    position: 'Главный специалист',
+    skillsRequired: 5,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion4Icon,
     logo: ContactCenterPromotion4Icon,
   },
   {
@@ -438,6 +470,9 @@ export const CONTACT_CENTER_FIELDS = [
   {
     id: 49,
     type: 'promotion',
+    position: 'Начальник отдела',
+    skillsRequired: 7,
+    notEnoughSkillsLogo: NotEnoughSkillsForPromotion5Icon,
     logo: ContactCenterPromotion5Icon,
   },
 ];

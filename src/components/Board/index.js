@@ -122,7 +122,7 @@ export function Board(props) {
             field && (
               <BoardField
                 key={field.id}
-                field={{ type: 'overlay' }}
+                field={{ type: 'backdrop' }}
                 style={getFieldStyles(fieldSize, [yIndex, xIndex], horizontalOffset)}
               />
             )

@@ -17,7 +17,7 @@
 }
 
 .text {
-  margin-top: 60px;
+  margin-top: calc(60px * var(--sizeCoefficient));
   font-weight: 600;
   font-size: calc(50px * var(--sizeCoefficient));
   line-height: calc(64px * var(--sizeCoefficient));

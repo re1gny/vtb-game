@@ -6,7 +6,7 @@ import styles from './index.module.scss';
 import { CompleteButton } from '../CompleteButton';
 
 export function ActionsBlock(props) {
-  const { className, gameCompleted, onCompleteGame, onRandomizeTask, onRandomizeSkill } = props;
+  const { className, gameCompleted, onCompleteGame, taskCards, skillCards, onRandomizeTask, onRandomizeSkill } = props;
 
   return (
     <div className={cn(styles.wrapper, className)}>
@@ -15,12 +15,14 @@ export function ActionsBlock(props) {
           className={styles.randomizer}
           {...TASK_RANDOMIZER}
           gameCompleted={gameCompleted}
+          emptyCards={!taskCards?.length}
           onRandomize={onRandomizeTask}
         />
         <CardRandomizer
           className={styles.randomizer}
           {...SKILL_RANDOMIZER}
           gameCompleted={gameCompleted}
+          emptyCards={!skillCards?.length}
           onRandomize={onRandomizeSkill}
         />
       </div>
