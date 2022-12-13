@@ -18,14 +18,14 @@
   background-repeat: no-repeat;
   background-position: left top;
 
-  &.gameCompleted {
-    opacity: 0;
+  &.emptyCards {
+    opacity: 0.5;
     pointer-events: none;
     cursor: default;
   }
 
-  &.emptyCards {
-    opacity: 0.5;
+  &.gameCompleted {
+    opacity: 0;
     pointer-events: none;
     cursor: default;
   }
