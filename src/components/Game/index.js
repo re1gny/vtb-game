@@ -115,7 +115,7 @@ export function Game(props) {
     }
   }
 
-  function validateCharacterStep(characterId, nextField, step) {
+  function validateCharacterStep(characterId, nextField) {
     if (!nextField) {
       return false;
     }
@@ -123,7 +123,7 @@ export function Game(props) {
     const currentCharacterSkills = charactersStateRef.current[characterId]?.skillsAmount;
 
     if (nextField.type === 'promotion' && currentCharacterSkills < nextField.skillsRequired) {
-      setTimeout(() => setCurrentPromotionWithNotEnoughSkills(nextField), step > 1 ? STEP_DURATION : 0);
+      setCurrentPromotionWithNotEnoughSkills(nextField);
       return false;
     }
 
@@ -137,24 +137,20 @@ export function Game(props) {
       const prev = charactersStateRef.current;
       const nextField = getNextFieldByFieldId(prev[characterId]?.fieldId, board);
 
-      if (validateCharacterStep(characterId, nextField, step)) {
+      if (validateCharacterStep(characterId, nextField)) {
         passedFields.push(nextField);
       } else {
         break;
       }
 
-      await promisifiedSetTimeout(
-        () => {
-          const prev = charactersStateRef.current;
-          const newState = { ...prev, [characterId]: { ...prev[characterId], fieldId: nextField.id } };
-          setCharactersStateRef(newState);
-        },
-        step > 1 ? STEP_DURATION : 0
-      );
+      const newState = { ...prev, [characterId]: { ...prev[characterId], fieldId: nextField.id } };
+      setCharactersStateRef(newState);
+
+      await promisifiedSetTimeout(() => undefined, STEP_DURATION);
     }
 
     if (passedFields.length) {
-      setTimeout(() => handlePassedCharacterSteps(passedFields), STEP_DURATION);
+      handlePassedCharacterSteps(passedFields);
     }
   }
 
