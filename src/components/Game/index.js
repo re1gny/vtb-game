@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { CHARACTERS } from '../../constants/characters';
 import { getBoardByDepartment } from '../../utils/getBoardByDepartment';
-import { getInitialCharactersState } from '../../utils/getInitialCharactersState';
 import { getNextFieldByFieldId } from '../../utils/getNextFieldByFieldId';
 import { CharactersBlock } from '../CharactersBlock';
 import { ActionsBlock } from '../ActionsBlock';
@@ -18,16 +17,16 @@ import { CHANCE_CARDS, SKILL_CARDS, TASK_CARDS } from '../../constants/cards';
 import { STEP_DURATION } from '../../constants/durations';
 import { SkillCardModal } from '../SkillCardModal';
 import { TaskCardModal } from '../TaskCardModal';
-import { getFieldsBetweenFieldsIds } from '../../utils/getFieldsBetweenFieldsIds';
 import { getFieldByPosition } from '../../utils/getFieldByPosition';
-import { normalizeCharacterSteps } from '../../utils/normalizeCharacterSteps';
+import { useCharactersState } from '../../hooks/useCharactersState';
+import { promisifiedSetTimeout } from '../../utils/promisifiedSetTimeout';
 import styles from './index.module.scss';
 
 export function Game(props) {
   const { className, department } = props;
   const board = getBoardByDepartment(department);
   const [gameCompleted, setGameCompleted] = useState(false);
-  const [charactersState, setCharactersState] = useState(getInitialCharactersState(CHARACTERS, board));
+  const [charactersStateRef, setCharactersStateRef] = useCharactersState(board);
   const [openedCharacter, setOpenedCharacter] = useState(null);
   const [currentPromotion, setCurrentPromotion] = useState(null);
   const [chanceCard, setChanceCard] = useState(null);
@@ -38,21 +37,33 @@ export function Game(props) {
   const [leftTaskCards, setLeftTaskCards] = useState(TASK_CARDS);
   const [leftSkillCards, setLeftSkillCards] = useState(SKILL_CARDS);
 
-  function handleCompleteGame(charactersState) {
+  function handleOpenCharacter(characterId) {
+    const character = CHARACTERS.find(({ id }) => id === characterId);
+    setOpenedCharacter(character);
+  }
+
+  function handleCompleteGame() {
     setGameCompleted(true);
-    setWinners(getWinners(CHARACTERS, charactersState, board));
+    setWinners(getWinners(CHARACTERS, charactersStateRef.current, board));
   }
 
   function handleActivateCharacter(characterId) {
-    setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], active: true } }));
+    const prev = charactersStateRef.current;
+    const newState = { ...prev, [characterId]: { ...prev[characterId], active: true } };
+    setCharactersStateRef(newState);
+    handleOpenCharacter(characterId);
   }
 
   function handleUseCharacterSuperpower(characterId) {
-    setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], superpowerAvailable: false } }));
+    const prev = charactersStateRef.current;
+    const newState = { ...prev, [characterId]: { ...prev[characterId], superpowerAvailable: false } };
+    setCharactersStateRef(newState);
   }
 
   function handleSkillsAmountChange(characterId, skillsAmount) {
-    setCharactersState((prev) => ({ ...prev, [characterId]: { ...prev[characterId], skillsAmount } }));
+    const prev = charactersStateRef.current;
+    const newState = { ...prev, [characterId]: { ...prev[characterId], skillsAmount } };
+    setCharactersStateRef(newState);
   }
 
   function handleRandomizeSkill() {
@@ -82,20 +93,18 @@ export function Game(props) {
     }
   }
 
-  function handlePassedCharacterSteps(initialFieldId, nextFieldId, nextCharactersState) {
-    const passedFields = getFieldsBetweenFieldsIds(initialFieldId, nextFieldId, board, { includeEnd: true }) || [];
-
-    const lastPassedField = passedFields[passedFields.length - 1];
+  function handlePassedCharacterSteps(passedFields) {
+    const lastPassedField = passedFields?.[passedFields?.length - 1];
 
     if (
       lastPassedField?.id &&
       lastPassedField.id === getFieldByPosition(board.path[board.path.length - 1], board)?.id
     ) {
-      handleCompleteGame(nextCharactersState);
+      handleCompleteGame();
       return;
     }
 
-    if (passedFields.some(({ type }) => type === 'promotion')) {
+    if (passedFields?.some(({ type }) => type === 'promotion')) {
       setCurrentPromotion([...passedFields].reverse().find(({ type }) => type === 'promotion'));
     }
 
@@ -104,39 +113,34 @@ export function Game(props) {
     }
   }
 
-  function handleCharacterStep(characterId, step, steps, initialFieldId) {
-    setCharactersState((prev) => {
-      const nextField = getNextFieldByFieldId(prev[characterId]?.fieldId, board);
-
-      if (!nextField) {
-        handlePassedCharacterSteps(initialFieldId, prev[characterId]?.fieldId, prev);
-        return prev;
-      }
-
-      const nextCharactersState = {
-        ...prev,
-        [characterId]: { ...prev[characterId], fieldId: nextField.id },
-      };
-
-      if (step === steps) {
-        setTimeout(() => handlePassedCharacterSteps(initialFieldId, nextField.id, nextCharactersState), STEP_DURATION);
-      }
-
-      return nextCharactersState;
-    });
+  function validateCharacterStep(nextField) {
+    return !!nextField;
   }
 
-  function handleCharacterMove(characterId, steps) {
-    if (!charactersState[characterId]?.active) {
-      return;
+  async function handleCharacterMove(characterId, steps) {
+    const passedFields = [];
+
+    for (let step = 1; step <= steps; step++) {
+      const prev = charactersStateRef.current;
+      const nextField = getNextFieldByFieldId(prev[characterId]?.fieldId, board);
+
+      if (validateCharacterStep(nextField)) {
+        passedFields.push(nextField);
+      } else {
+        break;
+      }
+
+      await promisifiedSetTimeout(
+        () => {
+          const prev = charactersStateRef.current;
+          const newState = { ...prev, [characterId]: { ...prev[characterId], fieldId: nextField.id } };
+          setCharactersStateRef(newState);
+        },
+        step > 1 ? STEP_DURATION : 0
+      );
     }
 
-    const initialFieldId = charactersState[characterId]?.fieldId;
-    const normalizedSteps = normalizeCharacterSteps(initialFieldId, steps, board);
-
-    for (let step = 1; step <= normalizedSteps; step++) {
-      setTimeout(() => handleCharacterStep(characterId, step, normalizedSteps, initialFieldId), step * STEP_DURATION);
-    }
+    setTimeout(() => handlePassedCharacterSteps(passedFields), STEP_DURATION);
   }
 
   return (
@@ -144,9 +148,9 @@ export function Game(props) {
       <CharactersBlock
         className={styles.characters}
         characters={CHARACTERS}
-        charactersState={charactersState}
+        charactersState={charactersStateRef.current}
         gameCompleted={gameCompleted}
-        onOpenCharacter={setOpenedCharacter}
+        onOpenCharacter={handleOpenCharacter}
         onActivate={handleActivateCharacter}
         onUseSuperpower={handleUseCharacterSuperpower}
         onSkillsAmountChange={handleSkillsAmountChange}
@@ -157,7 +161,7 @@ export function Game(props) {
         department={department}
         board={board}
         characters={CHARACTERS}
-        charactersState={charactersState}
+        charactersState={charactersStateRef.current}
         stepDuration={STEP_DURATION}
       />
       <ActionsBlock
@@ -165,7 +169,7 @@ export function Game(props) {
         gameCompleted={gameCompleted}
         taskCards={leftTaskCards}
         skillCards={leftSkillCards}
-        onCompleteGame={() => handleCompleteGame(charactersState)}
+        onCompleteGame={handleCompleteGame}
         onRandomizeSkill={handleRandomizeSkill}
         onRandomizeTask={handleRandomizeTask}
       />
@@ -177,7 +181,7 @@ export function Game(props) {
       <CharacterModal
         opened={!!openedCharacter}
         character={openedCharacter}
-        characterState={charactersState[openedCharacter?.id]}
+        characterState={charactersStateRef.current[openedCharacter?.id]}
         gameCompleted={gameCompleted}
         onClose={() => setOpenedCharacter(null)}
       />

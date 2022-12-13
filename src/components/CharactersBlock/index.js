@@ -27,7 +27,7 @@ export function CharactersBlock(props) {
             gameCompleted={gameCompleted}
             onActivate={() => onActivate?.(character?.id)}
             onUseSuperpower={() => onUseSuperpower?.(character?.id)}
-            onOpen={() => onOpenCharacter?.(character)}
+            onOpen={() => onOpenCharacter?.(character?.id)}
           />
           <CharacterState
             character={character}
@@ -36,7 +36,7 @@ export function CharactersBlock(props) {
             onActivate={() => onActivate?.(character?.id)}
             onSkillsAmountChange={(value) => onSkillsAmountChange?.(character?.id, value)}
             onMove={(steps) => onMove?.(character?.id, steps)}
-            onOpen={() => onOpenCharacter?.(character)}
+            onOpen={() => onOpenCharacter?.(character?.id)}
           />
         </Fragment>
       ))}

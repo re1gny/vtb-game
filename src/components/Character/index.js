@@ -11,7 +11,6 @@ export function Character(props) {
   function handleActivate() {
     if (!active && !gameCompleted) {
       onActivate?.();
-      onOpen?.();
     }
   }
 
