@@ -41,11 +41,11 @@ export function BaseTaskCardContent(props) {
       {renderChildren()}
       {withSubDescription && card?.subDescription && <div className={styles.subDescription}>{card.subDescription}</div>}
       {withTimer && card?.timer && <Timer className={styles.timer} time={card.timer} />}
-      {withAnswer && card?.answer && (
+      {withAnswer && (card?.answer || card?.answerLink) && (
         <div className={styles.answer}>
           {showAnswer ? (
             <>
-              <div className={styles.answerText}>Ответ: {card?.answer}</div>
+              <div className={styles.answerText}>Ответ: {card?.answer || ''}</div>
               {card?.answerLink && (
                 <Link className={styles.answerLink} href={card.answerLink}>
                   {card.answerLink}
