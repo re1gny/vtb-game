@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { Timer } from '../Timer';
+import { Link } from '../Link';
 import styles from './index.module.scss';
 
 export function BaseTaskCardContent(props) {
@@ -43,7 +44,14 @@ export function BaseTaskCardContent(props) {
       {withAnswer && card?.answer && (
         <div className={styles.answer}>
           {showAnswer ? (
-            <div className={styles.answerText}>{card?.answer}</div>
+            <>
+              <div className={styles.answerText}>Ответ: {card?.answer}</div>
+              {card?.answerLink && (
+                <Link className={styles.answerLink} href={card.answerLink}>
+                  {card.answerLink}
+                </Link>
+              )}
+            </>
           ) : (
             <button className={styles.answerButton} onClick={onShowAnswer}>
               Ответ
