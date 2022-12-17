@@ -1,0 +1,9 @@
+.wrapper {
+  font-weight: 700;
+  font-size: calc(23px * var(--sizeCoefficient));
+  line-height: calc(29px * var(--sizeCoefficient));
+  text-align: center;
+  text-decoration-line: underline;
+  color: #0094FF;
+  cursor: pointer;
+}

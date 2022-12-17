@@ -10,6 +10,7 @@
   box-sizing: border-box;
   z-index: 1000;
   animation: backdropAppear 0.2s forwards;
+  will-change: opacity;
 }
 
 .content {
@@ -22,6 +23,7 @@
   box-sizing: border-box;
   z-index: 1001;
   animation: contentAppear 0.2s both;
+  will-change: transform;
 }
 
 @keyframes backdropAppear {

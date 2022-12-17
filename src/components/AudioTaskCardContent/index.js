@@ -16,7 +16,7 @@ export function AudioTaskCardContent(props) {
       {!showFallback && card?.audio && (
         <div className={styles.playerWrapper}>
           <AudioPlayer className={styles.player} src={card.audio} />
-          <AudioTextIcon className={styles.audioTextIcon} onClick={() => setShowFallback(true)} />
+          {/*<AudioTextIcon className={styles.audioTextIcon} onClick={() => setShowFallback(true)} />*/}
         </div>
       )}
     </BaseTaskCardContent>

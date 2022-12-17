@@ -29,6 +29,7 @@
 }
 
 .answerSign {
+  flex-shrink: 0;
   width: calc(60px * var(--sizeCoefficient));
   height: calc(70px * var(--sizeCoefficient));
 
