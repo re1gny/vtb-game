@@ -47,9 +47,19 @@ export function BaseTaskCardContent(props) {
             <>
               <div className={styles.answerText}>Ответ: {card?.answer || ''}</div>
               {card?.answerLink && (
-                <Link className={styles.answerLink} href={card.answerLink}>
-                  {card.answerLink}
-                </Link>
+                <div className={styles.answerLinkWrapper}>
+                  {Array.isArray(card.answerLink) ? (
+                    card.answerLink.map((link) => (
+                      <Link key={link} className={styles.answerLink} href={link}>
+                        {link}
+                      </Link>
+                    ))
+                  ) : (
+                    <Link className={styles.answerLink} href={card.answerLink}>
+                      {card.answerLink}
+                    </Link>
+                  )}
+                </div>
               )}
             </>
           ) : (
