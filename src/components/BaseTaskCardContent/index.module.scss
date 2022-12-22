@@ -103,6 +103,13 @@
   color: #002882;
 }
 
+.answerLinkWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .answerButton {
   outline: none;
   border: none;
