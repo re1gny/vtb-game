@@ -22,6 +22,7 @@ export const RETAIL_DEPARTMENT_FIELDS = [
     position: 'Стажер-юниор',
     skillsRequired: 0,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion1Icon,
+    notEnoughSkillsLogoMaxHeight: 180,
     logo: RetailDepartmentPromotion1Icon,
   },
   {
@@ -64,6 +65,7 @@ export const RETAIL_DEPARTMENT_FIELDS = [
     position: 'Клиентский менеджер',
     skillsRequired: 2,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion2Icon,
+    notEnoughSkillsLogoMaxHeight: 180,
     logo: RetailDepartmentPromotion2Icon,
   },
   {
@@ -115,6 +117,7 @@ export const RETAIL_DEPARTMENT_FIELDS = [
     position: 'Персональный менеджер',
     skillsRequired: 3,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion3Icon,
+    notEnoughSkillsLogoMaxHeight: 180,
     logo: RetailDepartmentPromotion3Icon,
   },
   {
@@ -174,6 +177,7 @@ export const RETAIL_DEPARTMENT_FIELDS = [
     position: 'Руководитель группы',
     skillsRequired: 5,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion4Icon,
+    notEnoughSkillsLogoMaxHeight: 180,
     logo: RetailDepartmentPromotion4Icon,
   },
   {
@@ -242,6 +246,7 @@ export const RETAIL_DEPARTMENT_FIELDS = [
     position: 'Начальник отдела',
     skillsRequired: 7,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion5Icon,
+    notEnoughSkillsLogoMaxHeight: 300,
     logo: RetailDepartmentPromotion5Icon,
   },
 ];
@@ -253,6 +258,7 @@ export const CONTACT_CENTER_FIELDS = [
     position: 'Специалист',
     skillsRequired: 0,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion1Icon,
+    notEnoughSkillsLogoMaxHeight: 180,
     logo: ContactCenterPromotion1Icon,
   },
   {
@@ -295,6 +301,7 @@ export const CONTACT_CENTER_FIELDS = [
     position: 'Старший специалист',
     skillsRequired: 2,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion2Icon,
+    notEnoughSkillsLogoMaxHeight: 180,
     logo: ContactCenterPromotion2Icon,
   },
   {
@@ -343,9 +350,10 @@ export const CONTACT_CENTER_FIELDS = [
   {
     id: 21,
     type: 'promotion',
-    position: 'Персональный менеджер',
+    position: 'Ведущий специалист',
     skillsRequired: 3,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion3Icon,
+    notEnoughSkillsLogoMaxHeight: 180,
     logo: ContactCenterPromotion3Icon,
   },
   {
@@ -405,6 +413,7 @@ export const CONTACT_CENTER_FIELDS = [
     position: 'Главный специалист',
     skillsRequired: 5,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion4Icon,
+    notEnoughSkillsLogoMaxHeight: 180,
     logo: ContactCenterPromotion4Icon,
   },
   {
@@ -473,6 +482,7 @@ export const CONTACT_CENTER_FIELDS = [
     position: 'Начальник отдела',
     skillsRequired: 7,
     notEnoughSkillsLogo: NotEnoughSkillsForPromotion5Icon,
+    notEnoughSkillsLogoMaxHeight: 300,
     logo: ContactCenterPromotion5Icon,
   },
 ];

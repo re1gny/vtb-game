@@ -10,7 +10,7 @@
 
 .logo {
   max-width: 100%;
-  height: calc(186px * var(--sizeCoefficient));
+  max-height: calc(var(--logo-max-height) * var(--sizeCoefficient));
 }
 
 .title {
